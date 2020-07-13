@@ -200,12 +200,6 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 include vendor/oneplus/msm8998-common/BoardConfigVendor.mk
 
 # GFX
-USE_OPENGL_RENDERER := true
-BOARD_USES_ADRENO := true
-
-MAX_EGL_CACHE_KEY_SIZE := 12*1024
-MAX_EGL_CACHE_SIZE := 2048*1024
-
 TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 
 # Display
