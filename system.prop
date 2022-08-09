@@ -72,3 +72,8 @@ persist.dbg.wfc_avail_ovr=1
 
 # Wi-Fi
 wifi.interface=wlan0
+
+# Blur
+ro.surface_flinger.supports_background_blur=1
+ro.sf.blurs_are_expensive=0
+persist.sysui.disableBlur=false
