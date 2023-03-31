@@ -41,9 +41,9 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_VERSION := 4.14
 
-SOONG_CONFIG_NAMESPACES += qti_kernel_headers
-SOONG_CONFIG_qti_kernel_headers := version
-SOONG_CONFIG_qti_kernel_headers_version := 4.14
+SOONG_CONFIG_NAMESPACES += sony_qti_kernel_headers
+SOONG_CONFIG_sony_qti_kernel_headers := version
+SOONG_CONFIG_sony_qti_kernel_headers_version := 4.14
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
