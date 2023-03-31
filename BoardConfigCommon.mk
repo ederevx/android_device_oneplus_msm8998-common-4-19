@@ -141,3 +141,22 @@ WPA_SUPPLICANT_VERSION := VER_0_8_X
 
 # inherit from the proprietary version
 include vendor/oneplus/msm8998-common/BoardConfigVendor.mk
+
+# GFX
+USE_OPENGL_RENDERER := true
+BOARD_USES_ADRENO := true
+
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+
+# Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_COLOR_METADATA := true
+TARGET_USES_HWC2 := true
+TARGET_USES_DISPLAY_RENDER_INTENTS := true
+
+SOONG_CONFIG_NAMESPACES += gralloc
+SOONG_CONFIG_gralloc := use_v1
+SOONG_CONFIG_gralloc_use_v1 := true
