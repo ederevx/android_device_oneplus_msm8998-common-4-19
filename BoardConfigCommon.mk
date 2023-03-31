@@ -32,6 +32,8 @@ TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a73
 BOARD_KERNEL_CMDLINE := androidboot.hardware=qcom msm_rtb.filter=0x37 ehci-hcd.park=3
 BOARD_KERNEL_CMDLINE += service_locator.enable=1 swiotlb=2048
 BOARD_KERNEL_CMDLINE += loop.max_part=16
+BOARD_KERNEL_CMDLINE += coherent_pool=8M
+BOARD_KERNEL_CMDLINE += lpm_levels.sleep_disabled=1
 BOARD_KERNEL_CMDLINE += kpti=0
 #BOARD_KERNEL_CMDLINE += androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x00000000
