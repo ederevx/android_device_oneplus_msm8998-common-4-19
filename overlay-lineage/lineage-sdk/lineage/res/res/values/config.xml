@@ -9,13 +9,11 @@
     <!-- Paths to the libraries that contain device specific key handlers -->
     <string-array name="config_deviceKeyHandlerLibs" translatable="false">
         <item>/system/system_ext/priv-app/DeviceSettings/DeviceSettings.apk</item>
-        <item>/system/system_ext/priv-app/DeviceSettings/DeviceSettings.apk</item>
     </string-array>
 
     <!-- Names of the key handler classes -->
     <string-array name="config_deviceKeyHandlerClasses" translatable="false">
         <item>com.android.device.DeviceSettings.KeyHandler</item>
-        <item>com.android.device.DeviceSettings.TouchKeyHandler</item>
     </string-array>
 
     <!-- Hardware keys present on the device with the ability to wake, stored as a bit field.

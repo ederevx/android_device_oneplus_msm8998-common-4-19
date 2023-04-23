@@ -34,7 +34,6 @@ import android.provider.Settings;
 import android.util.Log;
 import androidx.preference.PreferenceManager;
 
-import com.android.device.DeviceSettings.Constants;
 import com.android.device.DeviceSettings.DeviceSettings;
 
 public class KeyHandler extends Service {
