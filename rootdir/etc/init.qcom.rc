@@ -187,7 +187,6 @@ on late-fs
     # Start services for bootanim
     start surfaceflinger
     start bootanim
-    start vendor.hwcomposer-2-3
     start vendor.qti.hardware.display.composer
     start vendor.qti.hardware.display.allocator
 
@@ -476,13 +475,13 @@ service vendor.ppd /vendor/bin/mm-pp-dpps
     task_profiles ServiceCapacityLow
     disabled
 
-on property:init.svc.vendor.hwcomposer-2-3=stopped
+on property:init.svc.vendor.hwcomposer-2-1=stopped
     stop vendor.ppd
 
-on property:init.svc.vendor.hwcomposer-2-3=running
+on property:init.svc.vendor.hwcomposer-2-1=running
     start vendor.ppd
 
-on property:init.svc.vendor.hwcomposer-2-3=restarting
+on property:init.svc.vendor.hwcomposer-2-1=restarting
     stop vendor.ppd
 
 service vendor.qrtr-ns /vendor/bin/qrtr-ns -f
