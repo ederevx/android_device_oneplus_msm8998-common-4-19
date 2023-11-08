@@ -483,6 +483,7 @@ vendor/lib64/vendor.qti.gnss@2.1.so
 vendor/lib64/vendor.qti.gnss@3.0-service.so
 vendor/lib64/vendor.qti.gnss@3.0.so
 
+# Graphics - from Cat/S62Pro/S62Pro:11/RKQ1.210406.002/1.015.00:user/release-keys
 vendor/lib/egl/eglSubDriverAndroid.so|28b215e408ee67c14ef9e9aaf5e4e4ed0a1ac7ff
 vendor/lib/egl/libEGL_adreno.so;SYMLINK=vendor/lib/libEGL_adreno.so|5611a6caa50562757d812553642a0a45fcc12668
 vendor/lib/egl/libGLESv1_CM_adreno.so|446279f43811de885507bdd3d6491da8f0cfd26d
@@ -530,6 +531,9 @@ vendor/firmware/a540_zap.b02
 vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
+# Graphics - HDR/SDM plugins (optional, intentionally excluded from first pass)
+# Keep the source HAL's FOSS fallback: c1582e75 and b5c971a5 document the
+# incompatible OnePlus plugin consumer path. Do not mix old postproc services.
 
 # IPA
 vendor/firmware/ipa_fws.b00
