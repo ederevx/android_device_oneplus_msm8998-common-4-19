@@ -609,16 +609,6 @@ vendor/bin/pm-proxy|910437c11108aa66e803bbc760ce3998d141a6b4
 vendor/bin/pm-service|98827a6bf6693033a7c767e3fb4f097b9075a0ef
 vendor/lib64/libperipheral_client.so|9bfd41e276e16b8f7c6808f3d87531fc5be4cdd5
 
-# Postprocessing
-vendor/bin/hw/vendor.display.color@1.0-service
-vendor/bin/mm-pp-dpps
-vendor/etc/init/vendor.display.color@1.0-service.rc
-vendor/lib64/libdisp-aba.so
-vendor/lib64/vendor.display.color@1.0.so
-vendor/lib64/vendor.display.color@1.1.so
-vendor/lib64/vendor.display.color@1.2.so
-vendor/lib64/vendor.display.postproc@1.0.so
-
 # Power-off alarm - from FP3 - 6.A.025.0
 product/app/PowerOffAlarm/PowerOffAlarm.apk:system_ext/app/PowerOffAlarm/PowerOffAlarm.apk|c7a8a195c47e1a3386173106ff6e2a68403b2e14
 vendor/bin/hw/vendor.qti.hardware.alarm@1.0-service|e8f29b90facd4d605dca41644f5a0dc77f6d2e9b
