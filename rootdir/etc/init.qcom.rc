@@ -194,6 +194,10 @@ on late-fs
     # Mount RW partitions which need to run fsck
     mount_all /vendor/etc/fstab.qcom --late
 
+    # Vibrator permissions
+    chown system system /sys/class/leds/vibrator/vmax_mv
+    chmod 0660 /sys/class/leds/vibrator/vmax_mv
+
 on post-fs-data
     # Nfc
     mkdir /data/vendor/nfc 0770 nfc nfc
@@ -305,13 +309,13 @@ on boot
     # Set TCP MTU probing to automatic
     write /proc/sys/net/ipv4/tcp_mtu_probing 1
 
+    # Swap Hardware Keys
+    chown system system /proc/s1302/key_rep
+    chmod 0660 /proc/s1302/key_rep
+
     start vendor.qcrild
     start vendor.qcrild2
     start vendor.dataqti
-
-    # Vibrator permissions
-    chown system system /sys/class/leds/vibrator/vmax_mv
-    chmod 0660 /sys/class/leds/vibrator/vmax_mv
 
 on charger
     start vendor.dashd
