@@ -4,6 +4,10 @@
     "target_path": "hardware/oneplus"
   },
   {
+    "repository": "android_hardware_sony_timekeep",
+    "target_path": "hardware/sony/timekeep"
+  },
+  {
     "repository": "android_kernel_oneplus_msm8998",
     "target_path": "kernel/oneplus/msm8998"
   }
