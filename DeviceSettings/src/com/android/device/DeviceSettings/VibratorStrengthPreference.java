@@ -25,6 +25,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.SeekBar;
 import android.widget.Button;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.os.Vibrator;
@@ -46,8 +47,12 @@ public class VibratorStrengthPreference extends Preference implements
 
     public VibratorStrengthPreference(Context context, AttributeSet attrs) {
         super(context, attrs);
-        mMinValue = 116;
-        mMaxValue = 1800;
+        mMinValue = 0;
+        if (Build.DEVICE.equals("OnePlus5")) {
+            mMaxValue = 2088;
+        } else {
+            mMaxValue = 1800;
+        }
 
         mVibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
         setLayoutResource(R.layout.preference_seek_bar);
