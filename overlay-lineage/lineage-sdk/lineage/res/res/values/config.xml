@@ -76,4 +76,7 @@
         <item>org.lineageos.aperture.dev</item>
     </string-array>
 
+    <!-- Disable livedisplay -->
+    <bool name="config_enableLiveDisplay">false</bool>
+
 </resources>
