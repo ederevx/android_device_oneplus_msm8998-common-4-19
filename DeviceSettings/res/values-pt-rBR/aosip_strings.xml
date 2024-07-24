@@ -32,21 +32,6 @@
     <string name="off_mode_title">Desligado</string>
     <string name="tile_panel_mode">Modos de painel</string>
     <string name="tile_hbm_mode">Modos de brilho alto</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Controle deslizante de notificação</string>
-    <string name="alert_slider_selection_dialog_title">Açao</string>
-    <string name="alert_slider_top_position">Posição superior</string>
-    <string name="alert_slider_middle_position">Posição central</string>
-    <string name="alert_slider_bottom_position">Posição inferior</string>
-    <string name="alert_slider_mode_dnd_total_silence">Silêncio total</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Somente alarmes</string>
-    <string name="alert_slider_mode_dnd_priority_only">Apenas prioritárias</string>
-    <string name="alert_slider_mode_silent">Silencioso</string>
-    <string name="alert_slider_mode_vibration">Vibrar</string>
-    <string name="alert_slider_mode_normal">Normal</string>
-    <string name="alert_slider_mute_media_title">Mídia mudo</string>
-    <string name="alert_slider_mute_media_summary">Mude a mídia ao mudar para o silêncio</string>
-    <string name="buttons_dashboard_summary">Configurações do controle deslizante de alerta</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Vibração</string>
     <string name="vib_strength_title_head">Intensidade do sistema</string>

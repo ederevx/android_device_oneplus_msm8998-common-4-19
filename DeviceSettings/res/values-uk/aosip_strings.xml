@@ -32,21 +32,6 @@
     <string name="off_mode_title">Вимк.</string>
     <string name="tile_panel_mode">Режим панелей</string>
     <string name="tile_hbm_mode">Режим високої яскравості</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Повзунок сповіщень</string>
-    <string name="alert_slider_selection_dialog_title">Дії</string>
-    <string name="alert_slider_top_position">Позиція зверху</string>
-    <string name="alert_slider_middle_position">Позиція посередені</string>
-    <string name="alert_slider_bottom_position">Позиція знизу</string>
-    <string name="alert_slider_mode_dnd_total_silence">Без сигналів</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Лише будильник</string>
-    <string name="alert_slider_mode_dnd_priority_only">Лише пріоритетні</string>
-    <string name="alert_slider_mode_silent">Без звуку</string>
-    <string name="alert_slider_mode_vibration">Вібрація</string>
-    <string name="alert_slider_mode_normal">Звичайний</string>
-    <string name="alert_slider_mute_media_title">Вимкнути звук медіа</string>
-    <string name="alert_slider_mute_media_summary">Вимкніть звук медіа під час перемикання на беззвучний режим</string>
-    <string name="buttons_dashboard_summary">Налаштування повзунка сповіщень</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Вібрація</string>
     <string name="vib_strength_title_head">Загальна</string>

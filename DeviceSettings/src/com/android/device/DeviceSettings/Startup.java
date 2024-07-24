@@ -57,8 +57,6 @@ public class Startup extends BroadcastReceiver {
         }
         VibratorStrengthPreference.restore(context);
 
-        context.startService(new Intent(context, KeyHandler.class));
-
         enabled = sharedPrefs.getBoolean(DeviceSettings.KEY_BUTTON_SWAP, false);
         restore(ButtonSwap.getFile(), enabled);
 
