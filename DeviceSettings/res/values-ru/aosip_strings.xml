@@ -32,21 +32,6 @@
     <string name="off_mode_title">Выкл</string>
     <string name="tile_panel_mode">Режим панелей</string>
     <string name="tile_hbm_mode">Режимы высокой яркости</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Слайдер уведомлений</string>
-    <string name="alert_slider_selection_dialog_title">Действие</string>
-    <string name="alert_slider_top_position">Верхнее положение</string>
-    <string name="alert_slider_middle_position">Среднее положение</string>
-    <string name="alert_slider_bottom_position">Нижнее положение</string>
-    <string name="alert_slider_mode_dnd_total_silence">Полная тишина</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Только будильник</string>
-    <string name="alert_slider_mode_dnd_priority_only">Только важные</string>
-    <string name="alert_slider_mode_silent">Без звука</string>
-    <string name="alert_slider_mode_vibration">Вибрация</string>
-    <string name="alert_slider_mode_normal">Нормальный</string>
-    <string name="alert_slider_mute_media_title">Отключить звук мультимедиа</string>
-    <string name="alert_slider_mute_media_summary">Отключение звука мультимедиа при переключении в беззвучный режим</string>
-    <string name="buttons_dashboard_summary">Параметры слайдера уведомлений</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Вибрация</string>
     <string name="vib_strength_title_head">Общая</string>

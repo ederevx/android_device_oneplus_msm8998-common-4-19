@@ -32,21 +32,6 @@
     <string name="off_mode_title">Tắt</string>
     <string name="tile_panel_mode">Chế độ Màn hình</string>
     <string name="tile_hbm_mode">Chế độ Độ sáng cao</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Thanh trượt thông báo</string>
-    <string name="alert_slider_selection_dialog_title">Hành động</string>
-    <string name="alert_slider_top_position">Vị trí trên cùng</string>
-    <string name="alert_slider_middle_position">Vị trí chính giữa</string>
-    <string name="alert_slider_bottom_position">Vị trí dưới cùng</string>
-    <string name="alert_slider_mode_dnd_total_silence">Hoàn toàn tắt tiếng</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Chỉ báo thức</string>
-    <string name="alert_slider_mode_dnd_priority_only">Chỉ ưu tiên</string>
-    <string name="alert_slider_mode_silent">Im lặng</string>
-    <string name="alert_slider_mode_vibration">Rung</string>
-    <string name="alert_slider_mode_normal">Bình thường</string>
-    <string name="alert_slider_mute_media_title">Tắt tiếng phương tiện</string>
-    <string name="alert_slider_mute_media_summary">Tắt tiếng phương tiện khi chuyển sang chế độ im lặng</string>
-    <string name="buttons_dashboard_summary">Cài đặt Thanh trượt Cảnh báo</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Bộ rung</string>
     <string name="vib_strength_title_head">Cường độ rung: Hệ thống</string>

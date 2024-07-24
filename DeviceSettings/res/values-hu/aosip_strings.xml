@@ -32,21 +32,6 @@
     <string name="off_mode_title">Ki</string>
     <string name="tile_panel_mode">Panelmódok</string>
     <string name="tile_hbm_mode">Magas fényerejű módok</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Értesítési csúszka</string>
-    <string name="alert_slider_selection_dialog_title">Művelet</string>
-    <string name="alert_slider_top_position">Felső pozíció</string>
-    <string name="alert_slider_middle_position">Középső pozíció</string>
-    <string name="alert_slider_bottom_position">Alsó pozíció</string>
-    <string name="alert_slider_mode_dnd_total_silence">Teljes némítás</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Csak riasztások</string>
-    <string name="alert_slider_mode_dnd_priority_only">Csak prioritásos</string>
-    <string name="alert_slider_mode_silent">Néma</string>
-    <string name="alert_slider_mode_vibration">Rezgés</string>
-    <string name="alert_slider_mode_normal">Normál</string>
-    <string name="alert_slider_mute_media_title">Média némítása</string>
-    <string name="alert_slider_mute_media_summary">Némítsa el a médiát, amikor néma üzemmódra vált</string>
-    <string name="buttons_dashboard_summary">Csúszka beállításai</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Rezgő</string>
     <string name="vib_strength_title_head">Rendszer erőssége</string>

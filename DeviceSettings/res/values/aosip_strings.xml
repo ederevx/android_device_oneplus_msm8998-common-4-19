@@ -39,22 +39,6 @@
     <string name="color_mode_balance_green">Green strength</string>
     <string name="color_mode_balance_blue">Blue strength</string>
 
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Notification slider</string>
-    <string name="alert_slider_selection_dialog_title">Action</string>
-    <string name="alert_slider_top_position">Top position</string>
-    <string name="alert_slider_middle_position">Middle position</string>
-    <string name="alert_slider_bottom_position">Bottom position</string>
-    <string name="alert_slider_mode_dnd_total_silence">Total silence</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Alarms only</string>
-    <string name="alert_slider_mode_dnd_priority_only">Priority only</string>
-    <string name="alert_slider_mode_silent">Silent</string>
-    <string name="alert_slider_mode_vibration">Vibrate</string>
-    <string name="alert_slider_mode_normal">Normal</string>
-    <string name="alert_slider_mute_media_title">Mute media</string>
-    <string name="alert_slider_mute_media_summary">Mute media when switching to silent</string>
-    <string name="buttons_dashboard_summary">Alert Slider Settings</string>
-
     <!-- Button settings  -->
     <string name="button_dashboard_summary">Buttons</string>
     <string name="button_swap_title">Swap buttons</string>

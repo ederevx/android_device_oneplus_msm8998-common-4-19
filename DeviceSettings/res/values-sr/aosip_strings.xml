@@ -31,23 +31,7 @@
     <string name="panel_category_summary">Modes for panel color correction</string>
     <string name="off_mode_title">Off</string>
     <string name="tile_panel_mode">Panel modes</string>
-    <string name="tile_hbm_mode">High brightness modes</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Notification slider</string>
-    <string name="alert_slider_selection_dialog_title">Action</string>
-    <string name="alert_slider_top_position">Top position</string>
-    <string name="alert_slider_middle_position">Middle position</string>
-    <string name="alert_slider_bottom_position">Bottom position</string>
-    <string name="alert_slider_mode_dnd_total_silence">Total silence</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Alarms only</string>
-    <string name="alert_slider_mode_dnd_priority_only">Priority only</string>
-    <string name="alert_slider_mode_silent">Silent</string>
-    <string name="alert_slider_mode_vibration">Vibrate</string>
-    <string name="alert_slider_mode_normal">Normal</string>
-    <string name="alert_slider_mute_media_title">Mute media</string>
-    <string name="alert_slider_mute_media_summary">Mute media when switching to silent</string>
-    <string name="buttons_dashboard_summary">Alert Slider Settings</string>
-    <!-- Vibration control -->
+    <string name="tile_hbm_mode">High brightness modes</string>    <!-- Vibration control -->
     <string name="category_vibrator">Vibrator</string>
     <string name="vib_strength_title_head">System Strength</string>
     <string name="vib_strength_summary_head">Define the strength of the vibrator</string>

@@ -32,21 +32,6 @@
     <string name="off_mode_title">Disattivato</string>
     <string name="tile_panel_mode">Modalità schermo</string>
     <string name="tile_hbm_mode">Modalità alta luminosità</string>
-    <!-- Notification slider -->
-    <string name="alert_slider_category_title">Cursore notifiche</string>
-    <string name="alert_slider_selection_dialog_title">Azione</string>
-    <string name="alert_slider_top_position">In alto</string>
-    <string name="alert_slider_middle_position">Al centro</string>
-    <string name="alert_slider_bottom_position">In fondo</string>
-    <string name="alert_slider_mode_dnd_total_silence">Silenzio totale</string>
-    <string name="alert_slider_mode_dnd_alarms_only">Solo allarmi/sveglie</string>
-    <string name="alert_slider_mode_dnd_priority_only">Solo con priorità</string>
-    <string name="alert_slider_mode_silent">Silenzioso</string>
-    <string name="alert_slider_mode_vibration">Vibrazione</string>
-    <string name="alert_slider_mode_normal">Normale</string>
-    <string name="alert_slider_mute_media_title">Mutare i media</string>
-    <string name="alert_slider_mute_media_summary">Disattivare i media quando si passa alla modalità silenziosa</string>
-    <string name="buttons_dashboard_summary">Cursore impostazione avvisi</string>
     <!-- Vibration control -->
     <string name="category_vibrator">Vibrazione</string>
     <string name="vib_strength_title_head">Intensità di sistema</string>
