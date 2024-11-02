@@ -51,22 +51,12 @@
       "ResetOnInit": true
     },
     {
-      "Name": "UclampTAMin",
+      "Name": "TAUClampBoost",
       "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
         "0",
-        "78",
-        "100"
-      ],
-      "DefaultIndex": 0,
-      "ResetOnInit": true
-    },
-    {
-      "Name": "UclampFgMin",
-      "Path": "/dev/cpuctl/foreground/cpu.uclamp.min",
-      "Values": [
-        "0",
-        "100"
+        "40",
+        "30"
       ],
       "DefaultIndex": 0,
       "ResetOnInit": true
@@ -347,9 +337,9 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "UclampTAMin",
-      "Duration": 0,
-      "Value": "78"
+      "Node": "TAUClampBoost",
+      "Duration": 6000,
+      "Value": "40"
     },
     {
       "PowerHint": "INTERACTION",
@@ -401,15 +391,9 @@
     },
     {
       "PowerHint": "LAUNCH",
-      "Node": "UclampTAMin",
-      "Duration": 3000,
-      "Value": "100"
-    },
-    {
-      "PowerHint": "LAUNCH",
-      "Node": "UclampFgMin",
-      "Duration": 3000,
-      "Value": "100"
+      "Node": "TAUClampBoost",
+      "Duration": 5000,
+      "Value": "30"
     },
     {
       "PowerHint": "LAUNCH",
