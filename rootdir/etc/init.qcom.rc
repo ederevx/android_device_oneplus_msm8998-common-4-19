@@ -90,11 +90,11 @@ on init
     write /sys/module/lpm_levels/system/perf/perf-l2-ret/idle_enabled N
 
     # Configure boot time UCLAMP
-    write /dev/cpuctl/top-app/cpu.uclamp.min 100
+    write /dev/cpuctl/top-app/cpu.uclamp.min 20
     write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
-    write /dev/cpuctl/foreground/cpu.uclamp.min 100
+    write /dev/cpuctl/foreground/cpu.uclamp.min 20
     write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 1
-    write /dev/cpuctl/system/cpu.uclamp.min 100
+    write /dev/cpuctl/system/cpu.uclamp.min 20
     write /dev/cpuctl/system/cpu.uclamp.latency_sensitive 1
 
     # RT uclamp setting
@@ -353,14 +353,6 @@ on charger
     write /sys/devices/system/cpu/cpu5/online 0
     write /sys/devices/system/cpu/cpu6/online 0
     write /sys/devices/system/cpu/cpu7/online 0
-
-    # Disable UCLAMP
-    write /dev/cpuctl/system/cpu.uclamp.min 0
-    write /dev/cpuctl/system/cpu.uclamp.latency_sensitive 0
-    write /dev/cpuctl/top-app/cpu.uclamp.min 0
-    write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 0
-    write /dev/cpuctl/foreground/cpu.uclamp.min 0
-    write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 0
 
 on property:sys.boot_completed=1
     # Enable ZRAM
