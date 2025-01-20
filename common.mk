@@ -151,7 +151,7 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gralloc.msm8998 \
     hwcomposer.qcom \
-    libdisplayconfig \
+    libdisplayconfig.system.qti \
     vendor.qti.hardware.memtrack-service \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.composer@2.1-service \
@@ -429,8 +429,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     vendor.display.config@1.10 \
-    vendor.display.config@1.10_vendor \
-    vendor.qti.hardware.display.composer-service
+    vendor.display.config@1.10.vendor
 
 # Display properties
 PRODUCT_PROPERTY_OVERRIDES += \
