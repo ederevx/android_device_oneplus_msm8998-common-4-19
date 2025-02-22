@@ -18,7 +18,6 @@
 package com.android.device.DeviceSettings;
 
 import android.content.SharedPreferences;
-import android.hardware.display.ColorDisplayManager;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -41,8 +40,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Locale;
 
-public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCheckedChangeListener,
-        SeekBar.OnSeekBarChangeListener {
+public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCheckedChangeListener {
     private static final int COLOR_CHANNEL_RED = 0;
     private static final int COLOR_CHANNEL_GREEN = 1;
     private static final int COLOR_CHANNEL_BLUE = 2;
@@ -54,18 +52,10 @@ public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCh
     private View mViewArrowPrevious;
     private View mViewArrowNext;
     private ViewPager mViewPager;
-    private ColorDisplayManager mColorDisplayManager;
 
     private ArrayList<View> mPageList;
     private ImageView[] mDotIndicators;
     private View[] mViewPagerImages;
-
-    private SeekBar mRedPref;
-    private SeekBar mGreenPref;
-    private SeekBar mBluePref;
-    private TextView mRedText;
-    private TextView mGreenText;
-    private TextView mBlueText;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -86,28 +76,6 @@ public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCh
         mRadioGroup.check(checkedButtonId);
         mRadioGroup.setOnCheckedChangeListener(this);
 
-        if (ColorDisplayManager.isColorTransformAccelerated(getContext())) {
-            mColorDisplayManager = getContext().getSystemService(ColorDisplayManager.class);
-            mRedPref = view.findViewById(R.id.color_balance_red);
-            mRedPref.setOnSeekBarChangeListener(this);
-            mGreenPref = view.findViewById(R.id.color_balance_green);
-            mGreenPref.setOnSeekBarChangeListener(this);
-            mBluePref = view.findViewById(R.id.color_balance_blue);
-            mBluePref.setOnSeekBarChangeListener(this);
-
-            mRedText = view.findViewById(R.id.color_balance_red_percent);
-            mGreenText = view.findViewById(R.id.color_balance_green_percent);
-            mBlueText = view.findViewById(R.id.color_balance_blue_percent);
-
-            mRedPref.setProgress(mColorDisplayManager.getColorBalanceChannel(COLOR_CHANNEL_RED));
-            mGreenPref.setProgress(mColorDisplayManager.getColorBalanceChannel(COLOR_CHANNEL_GREEN));
-            mBluePref.setProgress(mColorDisplayManager.getColorBalanceChannel(COLOR_CHANNEL_BLUE));
-        } else {
-            LinearLayout slidersCategory = view.findViewById(R.id.rgb_category);
-            slidersCategory.setVisibility(View.GONE);
-            slidersCategory.setEnabled(false);
-        }
-
         if (savedInstanceState != null) {
             final int selectedPosition = savedInstanceState.getInt(PAGE_VIEWER_SELECTION_INDEX);
             mViewPager.setCurrentItem(selectedPosition);
@@ -120,28 +88,6 @@ public class PanelSettings extends PreferenceFragment implements RadioGroup.OnCh
         super.onSaveInstanceState(outState);
         outState.putInt(PAGE_VIEWER_SELECTION_INDEX, mViewPager.getCurrentItem());
     }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        String percent = String.format(Locale.US, "%d%%",
-                Math.round((progress - 25) / 2.3));
-        if (seekBar == mRedPref) {
-            mColorDisplayManager.setColorBalanceChannel(COLOR_CHANNEL_RED, progress);
-            mRedText.setText(percent);
-        } else if (seekBar == mGreenPref) {
-            mColorDisplayManager.setColorBalanceChannel(COLOR_CHANNEL_GREEN, progress);
-            mGreenText.setText(percent);
-        } else if (seekBar == mBluePref) {
-            mColorDisplayManager.setColorBalanceChannel(COLOR_CHANNEL_BLUE, progress);
-            mBlueText.setText(percent);
-        }
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) { }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) { }
 
     @Override
     public void onCreatePreferences(Bundle savedInstanceState, String rootKey) { }
