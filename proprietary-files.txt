@@ -548,17 +548,19 @@ vendor/firmware/a540_zap.b02
 vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
-# Graphics - HDR
-vendor/lib64/libhdr_tm.so
+# Graphics - HDR - from Yoshino - SW_binaries_for_Xperia_Android_11_4.14_v9a_yoshino
+vendor/lib64/libhdr_tm.so|85d61350a662be41662e66ced09524bfcf20dcac
 
-# Graphics - SDM
-vendor/lib/libsdm-disp-vndapis.so;DISABLE_CHECKELF
-vendor/lib64/libqseed3.so
-vendor/lib64/libsdm-color.so;DISABLE_CHECKELF
-vendor/lib64/libsdm-diag.so;DISABLE_CHECKELF
-vendor/lib64/libsdm-disp-vndapis.so;DISABLE_CHECKELF
-vendor/lib64/libsdmextension.so;DISABLE_CHECKELF
-vendor/lib64/libtinyxml2_1.so
+# Graphics - SDM - from Yoshino - SW_binaries_for_Xperia_Android_11_4.14_v9a_yoshino
+vendor/lib64/libdisplayqos.so|ad0499fcb0a2cce8bbd54a74187c12ee6940248c
+vendor/lib64/libqseed3.so|f5b727c865bd4517fc8c2535d69df0df3557a345
+vendor/lib64/libsdedrm.so|93ba3b1ed931c471839f7ec53147867bbcda7eef
+vendor/lib64/libsdm-color.so|fc7fd37b37c35db8cd5556bad81f1419b3bc42a4
+vendor/lib64/libsdm-colormgr-algo.so|36ae885afb431960a589d81c58e988ba9b2a9990
+vendor/lib64/libsdm-diag.so|6024860fc98c73d058baefd0583e7541e6f48187
+vendor/lib64/libsdm-disp-vndapis.so|97e1417044216bc7fa14e2fabb321fa877b131e7
+vendor/lib64/libsdmextension.so|1401fe34e49aceea1dd51ee123ca9556147d9561
+vendor/lib64/libtinyxml2_1.so|d209e255720f38868eb4e9c727b201789d242e8c
 
 # IPA
 vendor/firmware/ipa_fws.b00
