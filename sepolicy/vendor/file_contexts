@@ -33,6 +33,9 @@
 # Ril
 /(vendor|system/vendor)/bin/init\.radio\.sh                     u:object_r:init-radio-sh_exec:s0
 
+# RMNET
+/sys/module/rmnet_perf/parameters(/.*)?                         u:object_r:sysfs_rmnet:s0
+
 # Root symlink
 /persist                                                        u:object_r:mnt_vendor_file:s0
 
