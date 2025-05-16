@@ -559,7 +559,6 @@ vendor/lib64/libsdm-color.so|fc7fd37b37c35db8cd5556bad81f1419b3bc42a4
 vendor/lib64/libsdm-colormgr-algo.so|36ae885afb431960a589d81c58e988ba9b2a9990
 vendor/lib64/libsdm-diag.so|6024860fc98c73d058baefd0583e7541e6f48187
 vendor/lib64/libsdm-disp-vndapis.so|97e1417044216bc7fa14e2fabb321fa877b131e7
-vendor/lib64/libsdmextension.so|1401fe34e49aceea1dd51ee123ca9556147d9561
 vendor/lib64/libtinyxml2_1.so|d209e255720f38868eb4e9c727b201789d242e8c
 
 # IPA
