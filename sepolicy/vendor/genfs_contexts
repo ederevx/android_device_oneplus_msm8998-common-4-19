@@ -11,6 +11,10 @@ genfscon proc /sys/kernel/boot_reason  u:object_r:proc_alarm_boot:s0
 genfscon sysfs /devices/platform/soc/soc:fingerprint_detect/sensor_version  u:object_r:sysfs_fp_detect:s0
 genfscon sysfs /devices/virtual/graphics/fb0                                u:object_r:sysfs_graphics:s0
 
+# LiveDisplay
+genfscon sysfs /devices/virtual/graphics/fb0/num_presets                      u:object_r:sysfs_livedisplay_tuneable:s0
+genfscon sysfs /devices/virtual/graphics/fb0/preset                           u:object_r:sysfs_livedisplay_tuneable:s0
+
 # USB
 genfscon sysfs /class/typec                                                                                                                   u:object_r:vendor_sysfs_usb_c:s0
 genfscon sysfs /devices/platform/soc/a800000.ssusb/usb_data_enabled                                                                           u:object_r:sysfs_usb_data_enabled:s0

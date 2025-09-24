@@ -1,0 +1,27 @@
+//
+// Copyright (C) 2019-2025 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+cc_binary {
+    name: "vendor.lineage.livedisplay-service.oneplus_msm8998",
+    init_rc: ["vendor.lineage.livedisplay-service.oneplus_msm8998.rc"],
+    vintf_fragments: ["vendor.lineage.livedisplay-service.oneplus_msm8998.xml"],
+    relative_install_path: "hw",
+    srcs: [
+        ":vendor.lineage.livedisplay-sysfs-se",
+        "DisplayModes.cpp",
+        "service.cpp",
+    ],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libbinder",
+        "libutils",
+        "vendor.lineage.livedisplay-V1-ndk",
+    ],
+    header_libs: [
+        "vendor.lineage.livedisplay-sysfs-headers",
+    ],
+    proprietary: true,
+}
