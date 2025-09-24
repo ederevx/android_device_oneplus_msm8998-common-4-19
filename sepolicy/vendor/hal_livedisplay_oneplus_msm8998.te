@@ -1,0 +1,18 @@
+type hal_livedisplay_oneplus_msm8998, domain;
+type hal_livedisplay_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
+
+init_daemon_domain(hal_livedisplay_oneplus_msm8998)
+
+hal_server_domain(hal_livedisplay_oneplus_msm8998, hal_lineage_livedisplay)
+
+binder_call(hal_livedisplay_oneplus_msm8998, servicemanager)
+
+vndbinder_use(hal_livedisplay_oneplus_msm8998)
+allow hal_livedisplay_oneplus_msm8998 qdisplay_service:service_manager find;
+binder_call(hal_livedisplay_oneplus_msm8998, hal_graphics_composer_default)
+
+allow hal_livedisplay_oneplus_msm8998 sysfs_graphics:dir r_dir_perms;
+allow hal_livedisplay_oneplus_msm8998 sysfs_livedisplay_tuneable:file rw_file_perms;
+
+allow hal_livedisplay_oneplus_msm8998 display_vendor_data_file:dir rw_dir_perms;
+allow hal_livedisplay_oneplus_msm8998 display_vendor_data_file:file create_file_perms;
