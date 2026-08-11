@@ -395,7 +395,8 @@ PRODUCT_SOONG_NAMESPACES += \
     hardware/google/pixel \
     hardware/lineage/interfaces/power-libperfmgr \
     hardware/oneplus \
-    hardware/qcom-caf/common/libqti-perfd-client
+    hardware/qcom-caf/common/libqti-perfd-client \
+    vendor/qcom/opensource/commonsys-intf/display
 
 # Tetheroffload
 PRODUCT_PACKAGES += \
