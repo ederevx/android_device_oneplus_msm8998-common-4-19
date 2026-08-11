@@ -392,18 +392,18 @@ PRODUCT_SHIPPING_API_LEVEL := 25
 # soong_namespace, so they collide with each other in namespace "." once Soong actually
 # validates the full module graph. Prune the ones we don't need.
 PRODUCT_SOURCE_ROOT_DIRS += \
-    -hardware/qcom-caf/msm8953 \
-    -hardware/qcom-caf/msm8998 \
-    -hardware/qcom-caf/sdm660 \
-    -hardware/qcom-caf/sdm845 \
-    -hardware/qcom-caf/sm8150 \
-    -hardware/qcom-caf/sm8250 \
-    -hardware/qcom-caf/sm8350 \
-    -hardware/qcom-caf/sm8450 \
-    -hardware/qcom-caf/sm8450-6.6 \
-    -hardware/qcom-caf/sm8550 \
-    -hardware/qcom-caf/sm8650 \
-    -hardware/qcom-caf/sm8750
+    -hardware/qcom-caf/msm8953/ \
+    -hardware/qcom-caf/msm8998/ \
+    -hardware/qcom-caf/sdm660/ \
+    -hardware/qcom-caf/sdm845/ \
+    -hardware/qcom-caf/sm8150/ \
+    -hardware/qcom-caf/sm8250/ \
+    -hardware/qcom-caf/sm8350/ \
+    -hardware/qcom-caf/sm8450/ \
+    -hardware/qcom-caf/sm8450-6.6/ \
+    -hardware/qcom-caf/sm8550/ \
+    -hardware/qcom-caf/sm8650/ \
+    -hardware/qcom-caf/sm8750/
 
 # Soong
 PRODUCT_SOONG_NAMESPACES += \
