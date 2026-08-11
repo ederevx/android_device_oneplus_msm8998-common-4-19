@@ -191,8 +191,3 @@ TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
 NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
 TARGET_USES_COLOR_METADATA := true
 TARGET_USES_DISPLAY_RENDER_INTENTS := true
-
-# msm8998 isn't in QSSI_SUPPORTED_PLATFORMS (hardware/qcom-caf/common/BoardConfigQcom.mk),
-# so qtidisplay.headers_namespace defaults to $(QCOM_SOONG_NAMESPACE)/display, which doesn't
-# define display_intf_headers. Override it to where the module actually lives.
-$(call soong_config_set,qtidisplay,headers_namespace,vendor/qcom/opensource/commonsys-intf/display)
