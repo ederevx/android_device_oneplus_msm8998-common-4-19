@@ -41,16 +41,16 @@ BOARD_KERNEL_CMDLINE += kpti=0
 BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
-TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
-TARGET_KERNEL_CONFIG := msm8998_oneplus_android_defconfig
-TARGET_KERNEL_VERSION := 4.14
+TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998-4-19
+TARGET_KERNEL_CONFIG := vendor/msm8998_oneplus_android_defconfig
+TARGET_KERNEL_VERSION := 4.19
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
 USE_DEVICE_SPECIFIC_AUDIO := true
 USE_DEVICE_SPECIFIC_DISPLAY := true
 USE_DEVICE_SPECIFIC_MEDIA := true
-QCOM_SOONG_NAMESPACE := hardware/qcom-caf/msm8998-4-14
+QCOM_SOONG_NAMESPACE := hardware/qcom-caf/msm8998-4-19
 DEVICE_SPECIFIC_AUDIO_PATH := $(QCOM_SOONG_NAMESPACE)/audio
 DEVICE_SPECIFIC_DISPLAY_PATH := $(QCOM_SOONG_NAMESPACE)/display
 DEVICE_SPECIFIC_MEDIA_PATH := $(QCOM_SOONG_NAMESPACE)/media
@@ -73,8 +73,7 @@ TARGET_FS_CONFIG_GEN += $(PLATFORM_PATH)/config.fs
 DEVICE_FRAMEWORK_COMPATIBILITY_MATRIX_FILE := \
     $(PLATFORM_PATH)/framework_compatibility_matrix.xml \
     hardware/qcom-caf/common/vendor_framework_compatibility_matrix.xml \
-    hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml \
-    vendor/lineage/config/device_framework_matrix.xml
+    hardware/qcom-caf/common/vendor_framework_compatibility_matrix_legacy.xml
 DEVICE_MANIFEST_FILE := $(PLATFORM_PATH)/manifest.xml
 DEVICE_MATRIX_FILE := hardware/qcom-caf/common/compatibility_matrix.xml
 
