@@ -14,7 +14,13 @@ $(call inherit-product, vendor/oneplus/msm8998-common/msm8998-common-vendor.mk)
 # Setup dalvik vm configs
 $(call inherit-product, frameworks/native/build/phone-xhdpi-6144-dalvik-heap.mk)
 
-PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
+# Our kernel fork doesn't carry every upstream android-4.19 common-kernel
+# backport (e.g. CONFIG_TRACE_GPU_MEM tracing), so don't self-block OTA
+# packaging over it
+PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
+
+# No dynamic/super partitions, so auto-size each physical image from its content
+PRODUCT_USE_DYNAMIC_PARTITION_SIZE := true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
