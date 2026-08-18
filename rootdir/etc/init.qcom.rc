@@ -177,7 +177,7 @@ on late-fs
     # Start services for bootanim
     start surfaceflinger
     start bootanim
-    start vendor.qti.hardware.display.composer
+    start vendor.hwcomposer-2-1
     start vendor.qti.hardware.display.allocator
 
     # Mount RW partitions which need to run fsck
