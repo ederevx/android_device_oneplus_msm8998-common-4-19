@@ -44,6 +44,8 @@ BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998-4-19
 TARGET_KERNEL_CONFIG := vendor/msm8998_oneplus_android_defconfig
 TARGET_KERNEL_VERSION := 4.19
+# This legacy kernel does not split modules between system and vendor.
+TARGET_KERNEL_MIXED_MODE := false
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
