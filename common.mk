@@ -4,6 +4,11 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Debugging
+ifneq ($(TARGET_BUILD_VARIANT),user)
+WITH_ADB_INSECURE := true
+endif
+
 # Add common definitions for Qualcomm
 $(call inherit-product, hardware/qcom-caf/common/common.mk)
 
