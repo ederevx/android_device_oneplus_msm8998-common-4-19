@@ -12,6 +12,7 @@ TARGET_NO_BOOTLOADER := true
 
 # Platform
 TARGET_BOARD_PLATFORM := msm8998
+TARGET_ENFORCES_QSSI := true
 
 # Architecture
 TARGET_ARCH := arm64
@@ -38,9 +39,11 @@ BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
 TARGET_KERNEL_CONFIG := lineage_oneplus5_defconfig
+TARGET_KERNEL_VERSION := 4.19
 
 # QCOM hardware
 BOARD_USES_QCOM_HARDWARE := true
+QCOM_SOONG_NAMESPACE := hardware/qcom-caf/sdm660
 
 # A/B
 AB_OTA_UPDATER := false
