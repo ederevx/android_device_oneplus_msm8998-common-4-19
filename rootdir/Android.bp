@@ -27,6 +27,13 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "init.qcom.edl-debug.rc",
+    src: "etc/init.qcom.edl-debug.rc",
+    sub_dir: "init/hw",
+    vendor: true,
+}
+
+prebuilt_etc {
     name: "ueventd.qcom.rc",
     filename: "ueventd.rc",
     src: "etc/ueventd.qcom.rc",
