@@ -481,23 +481,6 @@ service vendor.power_off_alarm /vendor/bin/power_off_alarm
     disabled
     oneshot
 
-service vendor.ppd /vendor/bin/mm-pp-dpps
-    class late_start
-    user system
-    group system graphics
-    socket pps stream 0660 system system
-    task_profiles ServiceCapacityLow
-    disabled
-
-on property:init.svc.vendor.hwcomposer-2-1=stopped
-    stop vendor.ppd
-
-on property:init.svc.vendor.hwcomposer-2-1=running
-    start vendor.ppd
-
-on property:init.svc.vendor.hwcomposer-2-1=restarting
-    stop vendor.ppd
-
 service vendor.qrtr-ns /vendor/bin/qrtr-ns -f
     class core
     user vendor_qrtr
