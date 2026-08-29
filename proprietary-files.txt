@@ -525,7 +525,6 @@ vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
 # Graphics - HDR
-vendor/lib64/libhdr_tm.so
 
 # IPA
 vendor/firmware/ipa_fws.b00
