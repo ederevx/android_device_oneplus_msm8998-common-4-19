@@ -20,7 +20,7 @@ from extract_utils.main import (
 
 namespace_imports = [
     'device/oneplus/msm8998-common',
-    'hardware/qcom-caf/msm8998',
+    'hardware/qcom-caf/sdm660',
     'hardware/qcom-caf/wlan',
     'hardware/oneplus',
     'vendor/qcom/opensource/dataservices',
