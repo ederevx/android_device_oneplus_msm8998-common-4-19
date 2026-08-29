@@ -1,0 +1,4 @@
+# Installed only in userdebug and engineering builds.
+on boot
+    chown root shell /sys/kernel/dload/controlled_edl_900e
+    chmod 0660 /sys/kernel/dload/controlled_edl_900e
