@@ -206,6 +206,9 @@ PRODUCT_PACKAGES += \
     init.radio.sh \
     ueventd.qcom.rc
 
+PRODUCT_PACKAGES_DEBUG += \
+    init.qcom.edl-debug.rc
+
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_oneplus_msm8998)
 
 # IFAA (Fingerprint support for Alipay)
