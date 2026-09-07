@@ -25,6 +25,7 @@ namespace_imports = [
     'hardware/qcom-caf/wlan',
     'hardware/oneplus',
     'vendor/qcom/opensource/dataservices',
+    'vendor/qcom/opensource/display',
 ]
 
 def lib_fixup_vendor_suffix(lib: str, partition: str, *args, **kwargs):
