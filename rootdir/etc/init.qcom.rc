@@ -294,8 +294,8 @@ on boot
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
     # Fingerprint detect
-    chmod 0660 /sys/devices/soc/soc:fingerprint_detect/sensor_version
-    chown system system /sys/devices/soc/soc:fingerprint_detect/sensor_version
+    chmod 0660 /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
+    chown system system /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
 
     # DASH charger
     chmod 0666 /dev/dash
