@@ -39,10 +39,10 @@ public class ProximitySensor implements SensorEventListener {
 
         switch (android.os.Build.DEVICE) {
             case "OnePlus5":
-                FPC_FILE = "/sys/devices/soc/soc:fpc_fpc1020/proximity_state";
+                FPC_FILE = "/sys/devices/platform/soc/soc:fpc_fpc1020/proximity_state";
                 break;
             case "OnePlus5T":
-                FPC_FILE = "/sys/devices/soc/soc:goodix_fp/proximity_state";
+                FPC_FILE = "/sys/devices/platform/soc/soc:goodix_fp/proximity_state";
                 break;
             default:
                 FPC_FILE = "/dev/null";
