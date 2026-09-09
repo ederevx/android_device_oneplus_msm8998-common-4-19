@@ -261,6 +261,9 @@ on early-boot
     wait_for_prop vendor.qcom.devup 1
 
 on boot
+    # The thermal zones are exposed directly; no symlink setup is required.
+    setprop vendor.thermal.link_ready 1
+
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
     chown system system /sys/module/msm_core/parameters/polling_interval
