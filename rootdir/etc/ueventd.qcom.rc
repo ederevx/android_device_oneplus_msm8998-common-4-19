@@ -133,3 +133,7 @@ firmware_directories /vendor/firmware_mnt/image/
 
 # Charger
 /sys/class/power_supply/battery  charging_enabled      0660   system  system
+
+# Thermal
+/sys/devices/virtual/thermal/thermal_zone*    trip_point_0_temp    0664   system  system
+/sys/devices/virtual/thermal/thermal_zone*    trip_point_0_hyst    0664   system  system
