@@ -47,7 +47,7 @@
     </acdb_ids>
 
     <bit_width_configs>
-        <device name="SND_DEVICE_OUT_SPEAKER" bit_width="24"/>
+        <device name="SND_DEVICE_OUT_SPEAKER" bit_width="16"/>
     </bit_width_configs>
 
     <pcm_ids>
