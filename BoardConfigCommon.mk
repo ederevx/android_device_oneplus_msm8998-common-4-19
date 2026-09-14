@@ -90,9 +90,15 @@ BOARD_CHEESEDUMP_DYNPART_PARTITION_LIST := odm product system system_ext vendor
 
 BOARD_ODMIMAGE_FILE_SYSTEM_TYPE := ext4
 BOARD_PRODUCTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_SYSTEMIMAGE_FILE_SYSTEM_TYPE := erofs
 BOARD_SYSTEM_EXTIMAGE_FILE_SYSTEM_TYPE := ext4
-BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_VENDORIMAGE_FILE_SYSTEM_TYPE := erofs
+
+# EROFS applies only to the read-only system and vendor images.
+# lz4hc,12 is the strongest LZ4 mode supported by the selected 4.19 kernel;
+# the 1 MiB physical cluster is likewise supported by that kernel.
+BOARD_EROFS_COMPRESSOR := lz4hc,12
+BOARD_EROFS_PCLUSTER_SIZE := 1048576
 
 TARGET_COPY_OUT_ODM := odm
 TARGET_COPY_OUT_PRODUCT := product
