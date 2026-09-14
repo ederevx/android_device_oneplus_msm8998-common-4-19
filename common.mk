@@ -204,7 +204,9 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.radio.sh \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    vendor_flash_recovery_noop \
+    zzz_vendor_flash_recovery_override.rc
 
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_oneplus_msm8998)
 
