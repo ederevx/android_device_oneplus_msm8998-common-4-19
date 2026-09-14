@@ -204,7 +204,9 @@ PRODUCT_PACKAGES += \
     init.qcom.rc \
     init.qcom.usb.rc \
     init.radio.sh \
-    ueventd.qcom.rc
+    ueventd.qcom.rc \
+    vendor_flash_recovery_noop \
+    zzz_vendor_flash_recovery_override.rc
 
 PRODUCT_PACKAGES_DEBUG += \
     init.qcom.edl-debug.rc
