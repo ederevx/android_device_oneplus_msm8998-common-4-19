@@ -11,6 +11,9 @@ import os
 import re
 
 def FullOTA_Assertions(info):
+  if common.OPTIONS.two_step:
+    raise common.ExternalError(
+        "Two-step OTAs are unsupported to preserve separately flashed recovery.")
   AddVendorAssertion(info)
 
   firmware_files = [
@@ -31,6 +34,9 @@ def FullOTA_Assertions(info):
   return
 
 def IncrementalOTA_Assertions(info):
+  if common.OPTIONS.two_step:
+    raise common.ExternalError(
+        "Two-step OTAs are unsupported to preserve separately flashed recovery.")
   AddVendorAssertion(info)
   AddModemAssertion(info)
   return
