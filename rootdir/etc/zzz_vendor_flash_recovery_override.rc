@@ -1,0 +1,8 @@
+# This filename sorts after vendor_flash_recovery.rc in /vendor/etc/init.
+# Its override keeps the persisted explicit start harmless.
+service vendor_flash_recovery /vendor/bin/vendor_flash_recovery_noop
+    class main
+    oneshot
+    user root
+    disabled
+    override
