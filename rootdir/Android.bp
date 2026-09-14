@@ -27,6 +27,13 @@ prebuilt_etc {
 }
 
 prebuilt_etc {
+    name: "zzz_vendor_flash_recovery_override.rc",
+    src: "etc/zzz_vendor_flash_recovery_override.rc",
+    sub_dir: "init",
+    vendor: true,
+}
+
+prebuilt_etc {
     name: "ueventd.qcom.rc",
     filename: "ueventd.rc",
     src: "etc/ueventd.qcom.rc",
@@ -44,5 +51,11 @@ sh_binary {
 sh_binary {
     name: "init.radio.sh",
     src: "bin/init.radio.sh",
+    vendor: true,
+}
+
+cc_binary {
+    name: "vendor_flash_recovery_noop",
+    srcs: ["bin/vendor_flash_recovery_noop.cpp"],
     vendor: true,
 }
