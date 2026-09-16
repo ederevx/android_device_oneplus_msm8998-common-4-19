@@ -1,2 +1,0 @@
-allow netmgrd sysfs_rmnet:dir search;
-allow netmgrd sysfs_rmnet:file rw_file_perms;

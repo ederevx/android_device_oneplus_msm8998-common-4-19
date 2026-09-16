@@ -25,21 +25,27 @@
 /(vendor|system/vendor)/bin/init\.devstart\.sh                  u:object_r:init-devstart-sh_exec:s0
 
 # Power supply
-/sys/devices/platform/soc/.*ssusb/power_supply/usb(/.*)?                 u:object_r:sysfs_usb_supply:s0
-/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/main(/.*)?       u:object_r:sysfs_usb_supply:s0
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/main(/.*)?       u:object_r:sysfs_battery_supply:s0
 /sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/usb(/.*)?        u:object_r:sysfs_usb_supply:s0
 /sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/battery(/.*)?    u:object_r:sysfs_battery_supply:s0
 /sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/dc(/.*)?         u:object_r:sysfs_battery_supply:s0
 /sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qpnp,fg/power_supply/bms(/.*)?               u:object_r:sysfs_battery_supply:s0
 
+# Power-supply wakeup sources
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/main/wakeup(/.*)?    u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/usb/wakeup(/.*)?     u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/battery/wakeup(/.*)? u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qcom,qpnp-smb2/power_supply/dc/wakeup(/.*)?      u:object_r:sysfs_wakeup:s0
+/sys/devices/platform/soc/800f000\.qcom,spmi/spmi-0/spmi0-02/800f000\.qcom,spmi:qcom,pmi8998@2:qpnp,fg/power_supply/bms/wakeup(/.*)?            u:object_r:sysfs_wakeup:s0
+
 # Ril
 /(vendor|system/vendor)/bin/init\.radio\.sh                     u:object_r:init-radio-sh_exec:s0
 
-# RMNET
-/sys/module/rmnet_perf/parameters(/.*)?                         u:object_r:sysfs_rmnet:s0
-
 # Root symlink
 /persist                                                        u:object_r:mnt_vendor_file:s0
+
+# Recovery
+/vendor/bin/vendor_flash_recovery_noop                           u:object_r:vendor_flash_recovery_noop_exec:s0
 
 /(system/vendor|vendor)/bin/timekeep                                                         u:object_r:timekeep_exec:s0
 /data/vendor/time(/.*)?                u:object_r:timekeep_vendor_data_file:s0
