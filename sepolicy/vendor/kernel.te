@@ -1,1 +1,1 @@
-allow kernel self:qipcrtr_socket create;
+allow kernel self:{ socket qipcrtr_socket } create_socket_perms_no_ioctl;
