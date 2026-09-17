@@ -1,0 +1,10 @@
+# Trip-point configuration writes observed at HAL init (66 avc events).
+allow hal_thermal_default sysfs_thermal:file w_file_perms;
+
+# Netlink uevent socket create at HAL init (3 avc events).
+allow hal_thermal_default self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+# android.hardware.thermal-service.pixel integrates with the AIDL power
+# HAL through PowerHalService (powerhal_helper.cpp), which resolves
+# android.hardware.power.IPower/default at startup.
+typeattribute hal_thermal_default hal_power_client;
