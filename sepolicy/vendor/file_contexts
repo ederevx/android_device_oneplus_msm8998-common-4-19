@@ -21,7 +21,6 @@
 /(vendor|system/vendor)/bin/hw/vendor\.oneplus\.camera\.CameraHIDL@1\.0-service                  u:object_r:hal_cameraHIDL_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.oneplus\.hardware\.drmkey@1\.0-service                    u:object_r:hal_drm_default_exec:s0
 /(vendor|system/vendor)/bin/hw/vendor\.oneplus\.hardware\.ifaa@2\.0-service                      u:object_r:hal_ifaa_default_exec:s0
-/(vendor|system/vendor)/bin/hw/android\.hardware\.usb\.gadget-service\.qti                       u:object_r:hal_usb_gadget_qti_exec:s0
 
 # Init
 /(vendor|system/vendor)/bin/init\.devstart\.sh                  u:object_r:init-devstart-sh_exec:s0
