@@ -1,0 +1,8 @@
+allow hal_thermal_default sysfs_thermal:file w_file_perms;
+
+allow hal_thermal_default self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+# android.hardware.thermal-service.pixel integrates with the AIDL power
+# HAL through PowerHalService (powerhal_helper.cpp), which resolves
+# android.hardware.power.IPower/default at startup.
+hal_client_domain(hal_thermal_default, hal_power)
