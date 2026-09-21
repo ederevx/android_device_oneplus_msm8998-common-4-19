@@ -72,6 +72,47 @@ on boot
     setprop sys.usb.controller "a800000.dwc3"
     setprop sys.usb.configfs 1
 
+# The QTI AIDL gadget HAL runs as system:usb and drives configfs directly,
+# but the gadget above is created shell-owned.  Hand the HAL ownership of
+# every attribute it writes, otherwise resetGadget()'s first fatal write
+# (bDeviceClass) fails with EACCES and the whole function switch aborts.
+# Mirrors vendor/qcom/opensource/usb/etc/init.qcom.usb.rc (9b4843b6).
+on zygote-start
+    chown system usb /config/usb_gadget/
+    chown system usb /config/usb_gadget/g1
+    chown system usb /config/usb_gadget/g1/UDC
+    chown system usb /config/usb_gadget/g1/bDeviceClass
+    chown system usb /config/usb_gadget/g1/bDeviceSubClass
+    chown system usb /config/usb_gadget/g1/bDeviceProtocol
+    chown system usb /config/usb_gadget/g1/bMaxPacketSize0
+    chown system usb /config/usb_gadget/g1/bcdDevice
+    chown system usb /config/usb_gadget/g1/bcdUSB
+    chown system usb /config/usb_gadget/g1/idVendor
+    chown system usb /config/usb_gadget/g1/idProduct
+    chown system usb /config/usb_gadget/g1/configs
+    chown system usb /config/usb_gadget/g1/functions
+    chown system usb /config/usb_gadget/g1/os_desc
+    chown system usb /config/usb_gadget/g1/os_desc/b.1
+    chown system usb /config/usb_gadget/g1/os_desc/b_vendor_code
+    chown system usb /config/usb_gadget/g1/os_desc/qw_sign
+    chown system usb /config/usb_gadget/g1/os_desc/use
+    chown system usb /config/usb_gadget/g1/configs/b.1
+    chown system usb /config/usb_gadget/g1/configs/b.1/MaxPower
+    chown system usb /config/usb_gadget/g1/configs/b.1/bmAttributes
+    chown system usb /config/usb_gadget/g1/configs/b.1/strings
+    chown system usb /config/usb_gadget/g1/configs/b.1/strings/0x409/configuration
+
+# FunctionFS MTP/PTP for the AIDL gadget HAL and MtpService.  The legacy
+# device init only created mtp.gs0/ptp.gs1 and mounted /dev/usb-ffs/adb, so
+# the HAL's addInotifyFd("/dev/usb-ffs/mtp/") and MtpService's ep0 open both
+# failed.  Mirrors vendor/qcom/opensource/usb/etc/init.qcom.usb.rc:194-199.
+    mkdir /config/usb_gadget/g1/functions/ffs.mtp 0770 system usb
+    mkdir /config/usb_gadget/g1/functions/ffs.ptp 0770 system usb
+    mkdir /dev/usb-ffs/mtp 0770 mtp mtp
+    mount functionfs mtp /dev/usb-ffs/mtp rmode=0770,fmode=0660,uid=1024,gid=1024,no_disconnect=1
+    mkdir /dev/usb-ffs/ptp 0770 mtp mtp
+    mount functionfs ptp /dev/usb-ffs/ptp rmode=0770,fmode=0660,uid=1024,gid=1024,no_disconnect=1
+
 # USB compositions
 on property:sys.usb.config=rndis && property:sys.usb.configfs=1
     write /config/usb_gadget/g1/idVendor 0x2717
