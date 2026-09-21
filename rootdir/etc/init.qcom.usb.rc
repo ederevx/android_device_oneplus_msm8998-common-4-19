@@ -76,8 +76,14 @@ on boot
 # but the gadget above is created shell-owned.  Hand the HAL ownership of
 # every attribute it writes, otherwise resetGadget()'s first fatal write
 # (bDeviceClass) fails with EACCES and the whole function switch aborts.
-# Mirrors vendor/qcom/opensource/usb/etc/init.qcom.usb.rc (9b4843b6).
-on zygote-start
+# Mirrors vendor/qcom/opensource/usb/etc/init.qcom.usb.rc (9b4843b6),
+# except for the trigger: that reference creates the gadget in its own
+# zygote-start block, while this port creates it in the `on boot` block
+# above.  init triggers zygote-start before boot in late-init, so a
+# zygote-start graft here chowns a tree that does not exist yet and has
+# no effect.  Use `on boot` instead: init runs same-trigger actions in
+# file order, so this runs after the gadget-creation block above.
+on boot
     chown system usb /config/usb_gadget/
     chown system usb /config/usb_gadget/g1
     chown system usb /config/usb_gadget/g1/UDC
