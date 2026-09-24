@@ -531,9 +531,13 @@ vendor/firmware/a540_zap.b02
 vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
-# Graphics - HDR/SDM plugins (optional, intentionally excluded from first pass)
-# Keep the source HAL's FOSS fallback: c1582e75 and b5c971a5 document the
-# incompatible OnePlus plugin consumer path. Do not mix old postproc services.
+# Graphics - SDM color plugin. The MSM8998-era OnePlus blobs target the older
+# display ABI and do not pair with the SDM660 display HAL; this is the matching
+# SDM660 libsdm-color and the libtinyxml2_1 it depends on, from the CAT S62 Pro
+# vendor blobs.
+# Source: https://github.com/TheMuppets/proprietary_vendor_xiaomi_sdm660-common/commit/5723ae430201d6e32f8eb77084ddff3f7305b55a
+vendor/lib64/libsdm-color.so|69cea5fdff6c3ef05a17390b9031d9e0054bc2ad
+vendor/lib64/libtinyxml2_1.so|ff32deb110acb02cb5def5f3404f9064c1276483
 
 # IPA
 vendor/firmware/ipa_fws.b00
