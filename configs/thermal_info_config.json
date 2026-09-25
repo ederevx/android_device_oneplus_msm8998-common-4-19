@@ -108,5 +108,9 @@
       "Multiplier": 0.001,
       "Monitor": true
     }
+  ],
+  "CoolingDevices": [
+    { "Name": "thermal-cpufreq-0", "Type": "CPU" },
+    { "Name": "thermal-cpufreq-4", "Type": "CPU" }
   ]
 }
