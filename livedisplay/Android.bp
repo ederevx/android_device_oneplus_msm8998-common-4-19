@@ -10,6 +10,7 @@ cc_binary {
     relative_install_path: "hw",
     srcs: [
         ":vendor.lineage.livedisplay-sysfs-se",
+        "AntiFlicker.cpp",
         "DisplayModes.cpp",
         "service.cpp",
     ],
