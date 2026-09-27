@@ -12,3 +12,7 @@ allow hal_power_default proc_touchpanel:file rw_file_perms;
 
 # Connect to PPS
 unix_socket_connect(hal_power_default, pps, mm-pp-daemon)
+
+# Utilization clamping hint nodes created by the vendor_sched shim
+allow hal_power_default proc_vendor_sched:dir search;
+allow hal_power_default proc_vendor_sched:file rw_file_perms;
