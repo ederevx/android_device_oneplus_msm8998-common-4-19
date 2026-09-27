@@ -82,11 +82,11 @@
       "ResetOnInit": true
     },
     {
-      "Name": "TASchedtuneBoost",
-      "Path": "/dev/stune/top-app/schedtune.boost",
+      "Name": "TAUclampMin",
+      "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
-        "50",
-        "10"
+        "512",
+        "102"
       ],
       "ResetOnInit": true
     },
@@ -336,7 +336,7 @@
     },
     {
       "PowerHint": "INTERACTION",
-      "Node": "TASchedtuneBoost",
+      "Node": "TAUclampMin",
       "Duration": 0,
       "Value": "50"
     },
