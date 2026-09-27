@@ -1,3 +1,11 @@
+# ADPF changes the scheduling of framework processes that sit at their own MLS
+# level, and the mlsconstrain on process setsched requires either equal levels or
+# a trusted subject (system/sepolicy/private/mls). Without this attribute the
+# allow rules below are overridden by that constrain and the denial is reported
+# against a domain that is already covered, which is what ADPF on platform apps
+# showed. Pixel's own power HAL policy sets the same attribute.
+typeattribute hal_power_default mlstrustedsubject;
+
 # To do powerhint on nodes defined in powerhint.json
 allow hal_power_default device_latency:chr_file rw_file_perms;
 
