@@ -12,6 +12,7 @@ genfscon sysfs /devices/platform/soc/soc:fingerprint_detect/sensor_version  u:ob
 genfscon sysfs /devices/virtual/graphics/fb0                                u:object_r:sysfs_graphics:s0
 
 # LiveDisplay
+genfscon sysfs /devices/virtual/graphics/fb0/dc                            u:object_r:sysfs_livedisplay_tuneable:s0
 genfscon sysfs /devices/virtual/graphics/fb0/num_presets                      u:object_r:sysfs_livedisplay_tuneable:s0
 genfscon sysfs /devices/virtual/graphics/fb0/preset                           u:object_r:sysfs_livedisplay_tuneable:s0
 
