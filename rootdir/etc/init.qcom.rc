@@ -72,10 +72,16 @@ on init
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
 
-    # Set boottime utilization clamping values
-    write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 1
-    write /dev/cpuctl/top-app/cpu.uclamp.min 16
+    # Set boottime utilization clamping values. The floors and the
+    # latency-sensitive flags mirror device/google/gs101/conf/init.gs101.rc,
+    # which writes top-app, foreground and system uclamp_min 1024 (100 percent)
+    # with prefer_idle 1. They are placeholders to tune on this platform.
+    write /dev/cpuctl/top-app/cpu.uclamp.min 100
     write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
+    write /dev/cpuctl/foreground/cpu.uclamp.min 100
+    write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 1
+    write /dev/cpuctl/system/cpu.uclamp.min 100
+    write /dev/cpuctl/system/cpu.uclamp.latency_sensitive 1
 
     # CPU is configured, re-enable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 1
