@@ -12,8 +12,10 @@
 #include <binder/ProcessState.h>
 #include <livedisplay/sysfs/SunlightEnhancement.h>
 
+#include "AntiFlicker.h"
 #include "DisplayModes.h"
 
+using ::aidl::vendor::lineage::livedisplay::AntiFlicker;
 using ::aidl::vendor::lineage::livedisplay::DisplayModes;
 using ::aidl::vendor::lineage::livedisplay::sysfs::SunlightEnhancement;
 
@@ -23,6 +25,7 @@ int main() {
 
     std::shared_ptr<DisplayModes> dm = ndk::SharedRefBase::make<DisplayModes>();
     std::shared_ptr<SunlightEnhancement> se = ndk::SharedRefBase::make<SunlightEnhancement>();
+    std::shared_ptr<AntiFlicker> af = ndk::SharedRefBase::make<AntiFlicker>();
 
     std::string instance = std::string() + DisplayModes::descriptor + "/default";
     binder_status_t status = AServiceManager_addService(dm->asBinder().get(), instance.c_str());
@@ -30,6 +33,10 @@ int main() {
 
     instance = std::string() + SunlightEnhancement::descriptor + "/default";
     status = AServiceManager_addService(se->asBinder().get(), instance.c_str());
+    CHECK_EQ(status, STATUS_OK);
+
+    instance = std::string() + AntiFlicker::descriptor + "/default";
+    status = AServiceManager_addService(af->asBinder().get(), instance.c_str());
     CHECK_EQ(status, STATUS_OK);
 
     LOG(INFO) << "LiveDisplay HAL service ready.";
