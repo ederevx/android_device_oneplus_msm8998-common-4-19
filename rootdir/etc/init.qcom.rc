@@ -74,7 +74,7 @@ on init
 
     # Set boottime utilization clamping values
     write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 1
-    write /dev/cpuctl/top-app/cpu.uclamp.min 102
+    write /dev/cpuctl/top-app/cpu.uclamp.min 16
     write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
 
     # CPU is configured, re-enable thermal core control

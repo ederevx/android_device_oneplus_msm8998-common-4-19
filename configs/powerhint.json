@@ -85,9 +85,10 @@
       "Name": "TAUclampMin",
       "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
       "Values": [
-        "512",
-        "102"
+        "16",
+        "47"
       ],
+      "DefaultIndex": 0,
       "ResetOnInit": true
     },
     {
@@ -338,7 +339,7 @@
       "PowerHint": "INTERACTION",
       "Node": "TAUclampMin",
       "Duration": 0,
-      "Value": "50"
+      "Value": "47"
     },
     {
       "PowerHint": "INTERACTION",
