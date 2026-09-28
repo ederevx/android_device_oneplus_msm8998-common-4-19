@@ -72,15 +72,17 @@ on init
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
 
-    # Utilization clamping boot values, mirroring
-    # device/google/gs101/conf/init.gs101.rc: top-app, foreground and system get
-    # uclamp_min 1024 and prefer_idle 1. The vendor_sched shim converts them and
-    # writes the cpuctl groups underneath.
-    write /proc/vendor_sched/ta_uclamp_min 1024
+    # Utilization clamping boot values for top-app, foreground and system. The
+    # floor is 410 of 1024, the 40 percent knee the device measurement found: a
+    # 100 percent floor pins the little cluster at its highest frequency even
+    # when idle and buys no latency over 40 percent. prefer_idle 1 mirrors
+    # device/google/gs101/conf/init.gs101.rc; the power HAL lowers top-app's
+    # through its own prefer-idle node at init.
+    write /proc/vendor_sched/ta_uclamp_min 410
     write /proc/vendor_sched/ta_prefer_idle 1
-    write /proc/vendor_sched/fg_uclamp_min 1024
+    write /proc/vendor_sched/fg_uclamp_min 410
     write /proc/vendor_sched/fg_prefer_idle 1
-    write /proc/vendor_sched/sys_uclamp_min 1024
+    write /proc/vendor_sched/sys_uclamp_min 410
     write /proc/vendor_sched/sys_prefer_idle 1
 
     # CPU is configured, re-enable thermal core control
@@ -323,6 +325,13 @@ on charger
     start vendor.dashd
     start vendor.power_off_alarm
     setprop sys.usb.configfs 1
+    write /proc/vendor_sched/sys_uclamp_min 0
+    write /proc/vendor_sched/sys_prefer_idle 0
+
+on zygote-start
+    # device/google/gs101/conf/init.gs101.rc drops the system group's boot floor
+    # here rather than at boot completion; mirror that.
+    write /proc/vendor_sched/sys_uclamp_min 0
 
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
@@ -349,7 +358,12 @@ on property:sys.boot_completed=1
     swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
 
-    # Runtime clamping values are the defaults (zero), so nothing to write
+    # Setup final cpu.uclamp, as device/google/gs101/conf/init.gs101.rc does: the
+    # floors written at boot are temporary, and the framework and the power HAL
+    # own the runtime values.
+    write /proc/vendor_sched/ta_uclamp_min 1
+    write /proc/vendor_sched/fg_uclamp_min 0
+    write /proc/vendor_sched/sys_prefer_idle 0
 
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
