@@ -72,10 +72,16 @@ on init
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
 
-    # Set boottime utilization clamping values
-    write /dev/cpuctl/foreground/cpu.uclamp.latency_sensitive 1
-    write /dev/cpuctl/top-app/cpu.uclamp.min 16
-    write /dev/cpuctl/top-app/cpu.uclamp.latency_sensitive 1
+    # Utilization clamping boot values, mirroring
+    # device/google/gs101/conf/init.gs101.rc: top-app, foreground and system get
+    # uclamp_min 1024 and prefer_idle 1. The vendor_sched shim converts them and
+    # writes the cpuctl groups underneath.
+    write /proc/vendor_sched/ta_uclamp_min 1024
+    write /proc/vendor_sched/ta_prefer_idle 1
+    write /proc/vendor_sched/fg_uclamp_min 1024
+    write /proc/vendor_sched/fg_prefer_idle 1
+    write /proc/vendor_sched/sys_uclamp_min 1024
+    write /proc/vendor_sched/sys_prefer_idle 1
 
     # CPU is configured, re-enable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 1

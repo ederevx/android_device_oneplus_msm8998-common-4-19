@@ -83,10 +83,13 @@
     },
     {
       "Name": "TAUclampMin",
-      "Path": "/dev/cpuctl/top-app/cpu.uclamp.min",
+      "Path": "/proc/vendor_sched/ta_uclamp_min",
       "Values": [
-        "16",
-        "47"
+        "1024",
+        "410",
+        "308",
+        "205",
+        "103"
       ],
       "DefaultIndex": 0,
       "ResetOnInit": true
@@ -339,7 +342,7 @@
       "PowerHint": "INTERACTION",
       "Node": "TAUclampMin",
       "Duration": 0,
-      "Value": "47"
+      "Value": "410"
     },
     {
       "PowerHint": "INTERACTION",

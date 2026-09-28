@@ -11,3 +11,7 @@ set_prop(vendor_init, vendor_time_service_prop);
 userdebug_or_eng(`
   allow vendor_init sysfs_controlled_edl_900e:file setattr;
 ')
+
+# Set the boot-time utilization clamping floors on the vendor_sched nodes
+allow vendor_init proc_vendor_sched:dir search;
+allow vendor_init proc_vendor_sched:file w_file_perms;
