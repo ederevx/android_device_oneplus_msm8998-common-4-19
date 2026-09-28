@@ -5,7 +5,6 @@ userdebug_or_eng(`
 ')
 
 genfscon proc /touchpanel              u:object_r:proc_touchpanel:s0
-genfscon proc /vendor_sched            u:object_r:proc_vendor_sched:s0
 genfscon proc /tri-state-key           u:object_r:proc_touchpanel:s0
 genfscon proc /sys/kernel/boot_reason  u:object_r:proc_alarm_boot:s0
 
