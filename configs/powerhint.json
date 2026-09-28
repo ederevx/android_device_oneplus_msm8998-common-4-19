@@ -85,11 +85,20 @@
       "Name": "TAUclampMin",
       "Path": "/proc/vendor_sched/ta_uclamp_min",
       "Values": [
-        "1024",
         "410",
         "308",
         "205",
         "103"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "TAPreferIdle",
+      "Path": "/proc/vendor_sched/ta_prefer_idle",
+      "Values": [
+        "0",
+        "1"
       ],
       "DefaultIndex": 0,
       "ResetOnInit": true
@@ -604,7 +613,7 @@
       "HBoostOffMaxAvgDurRatio": 4.0,
       "HBoostSevereJankPidPu": 0.5,
       "HBoostSevereJankThreshold": 8,
-      "HBoostUclampMinCeilingRange": [480, 722],
+      "HBoostUclampMinCeilingRange": [480, 614],
       "HBoostUclampMinFloorRange": [230, 410],
       "JankCheckTimeFactor": 1.2,
       "LowFrameRateThreshold": 25,
