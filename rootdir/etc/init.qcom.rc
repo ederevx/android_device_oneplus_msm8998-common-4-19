@@ -319,6 +319,8 @@ on charger
     start vendor.dashd
     start vendor.power_off_alarm
     setprop sys.usb.configfs 1
+    write /proc/vendor_sched/sys_uclamp_min 0
+    write /proc/vendor_sched/sys_prefer_idle 0
 
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
@@ -340,11 +342,17 @@ on charger
     write /sys/devices/system/cpu/cpu6/online 0
     write /sys/devices/system/cpu/cpu7/online 0
 
+on zygote-start
+    write /proc/vendor_sched/sys_uclamp_min 0
+
 on property:sys.boot_completed=1
     # Enable ZRAM
     swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
 
+    write /proc/vendor_sched/ta_uclamp_min 1
+    write /proc/vendor_sched/fg_uclamp_min 0
+    write /proc/vendor_sched/sys_prefer_idle 0
 
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
