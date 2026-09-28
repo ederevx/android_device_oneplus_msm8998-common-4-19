@@ -328,11 +328,6 @@ on charger
     write /proc/vendor_sched/sys_uclamp_min 0
     write /proc/vendor_sched/sys_prefer_idle 0
 
-on zygote-start
-    # device/google/gs101/conf/init.gs101.rc drops the system group's boot floor
-    # here rather than at boot completion; mirror that.
-    write /proc/vendor_sched/sys_uclamp_min 0
-
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled N
@@ -352,6 +347,11 @@ on zygote-start
     write /sys/devices/system/cpu/cpu5/online 0
     write /sys/devices/system/cpu/cpu6/online 0
     write /sys/devices/system/cpu/cpu7/online 0
+
+on zygote-start
+    # device/google/gs101/conf/init.gs101.rc drops the system group's boot floor
+    # here rather than at boot completion; mirror that.
+    write /proc/vendor_sched/sys_uclamp_min 0
 
 on property:sys.boot_completed=1
     # Enable ZRAM
