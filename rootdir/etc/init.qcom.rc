@@ -354,6 +354,10 @@ on property:sys.boot_completed=1
     write /proc/vendor_sched/fg_uclamp_min 0
     write /proc/vendor_sched/sys_prefer_idle 0
 
+    # util_est rampup multiplier: 1 is the no-rampup default; the power HAL
+    # raises a task to 4 while its session janks.
+    write /proc/sys/kernel/sched_rampup_multiplier 1
+
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled N
