@@ -713,10 +713,7 @@
       ],
       "JankCheckTimeFactor": 1.2,
       "LowFrameRateThreshold": 25,
-      "MaxRecordsNum": 300,
-      "HeuristicRampup": true,
-      "DefaultRampupMult": 1,
-      "HighRampupMult": 4
+      "MaxRecordsNum": 300
     }
   ]
 }
