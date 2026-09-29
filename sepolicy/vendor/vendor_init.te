@@ -14,3 +14,4 @@ userdebug_or_eng(`
 
 allow vendor_init proc_vendor_sched:dir search;
 allow vendor_init proc_vendor_sched:file w_file_perms;
+allow vendor_init proc_sched:file w_file_perms;
