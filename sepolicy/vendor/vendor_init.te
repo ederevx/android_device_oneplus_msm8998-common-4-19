@@ -10,3 +10,4 @@ set_prop(vendor_init, vendor_time_service_prop);
 
 allow vendor_init proc_vendor_sched:dir search;
 allow vendor_init proc_vendor_sched:file w_file_perms;
+allow vendor_init proc_sched:file w_file_perms;
