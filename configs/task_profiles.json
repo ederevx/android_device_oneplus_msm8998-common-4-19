@@ -1,0 +1,116 @@
+{
+  "Profiles": [
+    {
+      "Name": "PreferIdleSet",
+      "Actions": [
+        {
+          "Name": "JoinCgroup",
+          "Params": {
+            "Controller": "cpu",
+            "Path": "top-app"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "PreferIdleClear",
+      "Actions": [
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampLatencySensitive",
+            "Value": "0"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "PreferFitSet",
+      "Actions": [
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampLatencySensitive",
+            "Value": "1"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "PreferHighCapSet",
+      "Actions": [
+        {
+          "Name": "JoinCgroup",
+          "Params": {
+            "Controller": "cpu",
+            "Path": "top-app"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SCHED_QOS_SENSITIVE_STANDARD",
+      "Actions": [
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampLatencySensitive",
+            "Value": "1"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampMin",
+            "Value": "0.20"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SCHED_QOS_SENSITIVE_EXTREME",
+      "Actions": [
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampLatencySensitive",
+            "Value": "1"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampMin",
+            "Value": "15.82"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SCHED_QOS_NONE",
+      "Actions": [
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampLatencySensitive",
+            "Value": "0"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampMin",
+            "Value": "0"
+          }
+        },
+        {
+          "Name": "SetAttribute",
+          "Params": {
+            "Name": "UClampMax",
+            "Value": "max"
+          }
+        }
+      ]
+    }
+  ]
+}
