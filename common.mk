@@ -21,10 +21,16 @@ PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS += *
+
+PRODUCT_PACKAGES += \
+    FrameworksResCommon \
+    SettingsProviderResCommon \
+    SettingsResCommon \
+    SystemUIResCommon \
+    TelephonyResCommon
 
 # Partitions
 PRODUCT_PACKAGES += \
