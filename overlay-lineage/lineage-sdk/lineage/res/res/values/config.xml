@@ -58,4 +58,16 @@
     <!-- Enable anti-flicker by default -->
     <bool name="config_defaultAntiFlicker">true</bool>
 
+    <!-- Device key handlers. The alert slider handler runs in system_server so
+         it cannot be killed and miss a slider change. Keep LineageParts' volume
+         key gesture handler entry, overriding a string-array replaces it. -->
+    <string-array name="config_deviceKeyHandlerLibs" translatable="false">
+        <item>/system_ext/priv-app/LineageParts/LineageParts.apk</item>
+        <item>/system_ext/app/KeyHandler/KeyHandler.apk</item>
+    </string-array>
+    <string-array name="config_deviceKeyHandlerClasses" translatable="false">
+        <item>org.lineageos.lineageparts.gestures.KeyHandler</item>
+        <item>org.lineageos.settings.device.KeyHandler</item>
+    </string-array>
+
 </resources>
