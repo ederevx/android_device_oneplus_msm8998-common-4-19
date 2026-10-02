@@ -85,7 +85,6 @@
       "Name": "TAUclampMin",
       "Path": "/proc/vendor_sched/ta_uclamp_min",
       "Values": [
-        "1024",
         "410",
         "308",
         "205",
@@ -352,7 +351,7 @@
       "PowerHint": "INTERACTION",
       "Node": "TAUclampMin",
       "Duration": 0,
-      "Value": "205"
+      "Value": "410"
     },
     {
       "PowerHint": "LAUNCH",
@@ -687,10 +686,10 @@
       "PID_Du": 0.0,
       "UclampMin_On": true,
       "UclampMin_Init": 162,
-      "UclampMin_High": 819,
+      "UclampMin_High": 480,
       "UclampMin_Low": 2,
-      "UclampMin_LoadUp": 819,
-      "UclampMin_LoadReset": 819,
+      "UclampMin_LoadUp": 480,
+      "UclampMin_LoadReset": 480,
       "UclampMax_EfficientBase": 400,
       "UclampMax_EfficientOffset": 200,
       "SamplingWindow_P": 1,
@@ -717,7 +716,7 @@
       "MaxRecordsNum": 300,
       "HeuristicRampup": true,
       "DefaultRampupMult": 1,
-      "HighRampupMult": 2
+      "HighRampupMult": 4
     }
   ]
 }
