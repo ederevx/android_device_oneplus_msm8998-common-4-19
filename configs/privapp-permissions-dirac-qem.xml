@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<permissions>
+    <privapp-permissions package="org.lineageos.dirac.qem">
+        <permission name="android.permission.BLUETOOTH_CONNECT"/>
+    </privapp-permissions>
+</permissions>
