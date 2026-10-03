@@ -344,6 +344,7 @@ void shim_close_output_stream(struct audio_hw_device* dev, struct audio_stream_o
 }
 
 int shim_open(const struct hw_module_t* module, const char* id, struct hw_device_t** device) {
+    (void)module;
     if (device == nullptr) {
         return -EINVAL;
     }
