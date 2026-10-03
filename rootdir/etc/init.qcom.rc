@@ -72,14 +72,6 @@ on init
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/up_rate_limit_us 500
     write /sys/devices/system/cpu/cpufreq/policy4/schedutil/down_rate_limit_us 20000
 
-    # Hold the foreground and system groups at the maximum floor through boot
-    # for boot speed; boot_completed settles them to the measured configuration.
-    write /proc/vendor_sched/ta_prefer_idle 1
-    write /proc/vendor_sched/fg_uclamp_min 1024
-    write /proc/vendor_sched/fg_prefer_idle 1
-    write /proc/vendor_sched/sys_uclamp_min 1024
-    write /proc/vendor_sched/sys_prefer_idle 1
-
     # CPU is configured, re-enable thermal core control
     write /sys/module/msm_thermal/core_control/enabled 1
 
@@ -320,8 +312,6 @@ on charger
     start vendor.dashd
     start vendor.power_off_alarm
     setprop sys.usb.configfs 1
-    write /proc/vendor_sched/sys_uclamp_min 0
-    write /proc/vendor_sched/sys_prefer_idle 0
 
     # Enable UFS powersaving
     write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
@@ -347,13 +337,6 @@ on property:sys.boot_completed=1
     # Enable ZRAM
     swapon_all /vendor/etc/fstab.qcom
     write /proc/sys/vm/swappiness 100
-
-    # Measured configuration: the foreground and system floors at zero. The
-    # top-app prefer-idle flag belongs to the power HAL, and no measurement
-    # separates the foreground flag, so neither is written here.
-    write /proc/vendor_sched/fg_uclamp_min 0
-    write /proc/vendor_sched/sys_uclamp_min 0
-    write /proc/vendor_sched/sys_prefer_idle 0
 
     # util_est rampup multiplier: 1 is the no-rampup default; the power HAL
     # raises a task to 4 while its session janks.
