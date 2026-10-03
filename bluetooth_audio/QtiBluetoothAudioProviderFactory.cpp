@@ -45,15 +45,17 @@ bool QtiBluetoothAudioProviderFactory::LoadQtiFactory() {
     if (qti_factory_ != nullptr) {
         return true;
     }
-    // The vendor implementation is a passthrough HIDL library; loading it here
-    // puts the session store it writes in the process that serves both the
-    // audio.bluetooth_qti HAL module and the primary HAL.
+    // The vendor implementation is a passthrough-only HIDL library: it exports
+    // HIDL_FETCH_IBluetoothAudioProvidersFactory but is never registered with
+    // hwservicemanager. Resolve it as a stub, which dlopens the -impl.so into
+    // this process next to the session store it feeds. A blocking getService()
+    // must never be used here: with the HIDL VINTF manifest entry the runtime
+    // treats the missing service as a lazy HAL and retries forever, wedging
+    // this thread and stalling Bluetooth enable. getService(..., getStub=true)
+    // skips the retry loop and is bounded, so a failure falls through to the
+    // AOSP provider without any wait.
     qti_factory_ = ::vendor::qti::hardware::bluetooth_audio::V2_0::
-            IBluetoothAudioProvidersFactory::getService("default");
-    if (qti_factory_ == nullptr) {
-        qti_factory_ = ::vendor::qti::hardware::bluetooth_audio::V2_0::
-                IBluetoothAudioProvidersFactory::getService("default", true /* getStub */);
-    }
+            IBluetoothAudioProvidersFactory::getService("default", true /* getStub */);
     if (qti_factory_ == nullptr) {
         LOG(ERROR) << __func__ << ": vendor bluetooth audio provider unavailable";
         return false;
