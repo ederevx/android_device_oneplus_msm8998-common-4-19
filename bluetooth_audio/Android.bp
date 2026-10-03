@@ -88,6 +88,9 @@ cc_prebuilt_library_shared {
     name: "android.hardware.bluetooth.audio-impl",
     prefer: true,
     vendor: true,
+    // The AOSP module stops installing its own fragment once this build takes
+    // the module over, so the AIDL interface is declared here instead.
+    vintf_fragments: ["bluetooth_audio_qti.xml"],
     strip: {
         none: true,
     },
