@@ -1,0 +1,65 @@
+// Copyright (C) 2026 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+// Device-owned AIDL Bluetooth audio provider factory. The A2DP session types
+// are served by the QTI HIDL 2.0 provider, the only implementation of A2DP
+// hardware offload on this platform, so that they land in the vendor session
+// store the audio.bluetooth_qti HAL module reads. Every other session type
+// stays with the AOSP providers.
+//
+// The AOSP provider sources next to these files are a copy of
+// hardware/interfaces/bluetooth/audio/aidl/default, kept so the AOSP session
+// types survive the factory replacement; only the Qti* sources are device work.
+//
+// The library keeps the AOSP module name because
+// android.hardware.audio.service loads it by that name; the AOSP module of the
+// same name is replaced by this one in the product packages.
+
+cc_library_shared {
+    name: "android.hardware.bluetooth.audio-impl-qti",
+    // android.hardware.audio.service loads the factory from a library with the
+    // AOSP name, so install this build at that path.
+    stem: "android.hardware.bluetooth.audio-impl",
+    vendor: true,
+    vintf_fragments: ["bluetooth_audio.xml"],
+    defaults: [
+        "aconfig_lib_cc_static_link.defaults",
+        "latest_android_hardware_bluetooth_audio_ndk_shared",
+    ],
+    srcs: [
+        "A2dpOffloadAudioProvider.cpp",
+        "A2dpOffloadCodecAac.cpp",
+        "A2dpOffloadCodecFactory.cpp",
+        "A2dpOffloadCodecSbc.cpp",
+        "A2dpSoftwareAudioProvider.cpp",
+        "BluetoothAudioProvider.cpp",
+        "BluetoothAudioProviderFactory.cpp",
+        "HearingAidAudioProvider.cpp",
+        "HfpOffloadAudioProvider.cpp",
+        "HfpSoftwareAudioProvider.cpp",
+        "LeAudioOffloadAudioProvider.cpp",
+        "LeAudioSoftwareAudioProvider.cpp",
+        "QtiAudioConfigConverter.cpp",
+        "QtiAudioPortForwarder.cpp",
+        "QtiBluetoothAudioProvider.cpp",
+        "QtiBluetoothAudioProviderFactory.cpp",
+        "service.cpp",
+    ],
+    export_include_dirs: ["."],
+    header_libs: ["libhardware_headers"],
+    shared_libs: [
+        "libbase",
+        "libbinder_ndk",
+        "libcutils",
+        "libfmq",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "libbluetooth_audio_session_aidl",
+        "server_configurable_flags",
+        "vendor.qti.hardware.bluetooth_audio@2.0",
+    ],
+    static_libs: [
+        "btaudiohal_flags_c_lib",
+    ],
+}
