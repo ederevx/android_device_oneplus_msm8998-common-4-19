@@ -1,0 +1,15 @@
+<!--
+    Input:
+        device/oneplus/msm8998-common/bluetooth_audio/bluetooth_audio_qti.xml
+
+    The AOSP android.hardware.bluetooth.audio-impl module owns this declaration
+    and stops installing its own fragment once this device build takes over the
+    module's library, so the device declares the interface it serves itself.
+-->
+<manifest version="9.0" type="device">
+    <hal format="aidl">
+        <name>android.hardware.bluetooth.audio</name>
+        <version>5</version>
+        <fqname>IBluetoothAudioProviderFactory/default</fqname>
+    </hal>
+</manifest>
