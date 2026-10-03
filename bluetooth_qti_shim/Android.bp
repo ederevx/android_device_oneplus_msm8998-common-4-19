@@ -1,0 +1,27 @@
+// Copyright (C) 2026 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+// A16 ABI shim that wraps the Android 10 QTI Bluetooth audio HAL. It installs
+// in place of audio.bluetooth_qti.default.so; the legacy blob is built by
+// vendor/oneplus/msm8998-common with stem audio.bluetooth_qti.legacy and
+// dlopened from the same directory. The SONAME is kept distinct because the
+// legacy blob already carries SONAME audio.bluetooth_qti.default.so.
+
+cc_library_shared {
+    name: "audio.bluetooth_qti.default-shim",
+    stem: "audio.bluetooth_qti.default",
+    vendor: true,
+    relative_install_path: "hw",
+    compile_multilib: "both",
+    srcs: ["audio_bluetooth_qti_shim.cpp"],
+    header_libs: ["libhardware_headers"],
+    shared_libs: [
+        "libdl",
+        "liblog",
+    ],
+    ldflags: ["-Wl,-soname,audio.bluetooth_qti_shim.so"],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
