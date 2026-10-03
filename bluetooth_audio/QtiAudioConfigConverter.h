@@ -45,7 +45,7 @@ class QtiAudioConfigConverter {
     // AOSP providers.
     static bool IsQtiSessionType(const AidlSessionType& session_type);
 
-    // Session type conversions.
+    // Session type conversion.
     static HidlSessionType ToHidlSessionType(const AidlSessionType& session_type);
 
     // Status conversion.
@@ -56,9 +56,10 @@ class QtiAudioConfigConverter {
     static bool ToHidlAudioConfig(const AidlAudioConfig& audio_config,
                                   HidlAudioConfig* hidl_audio_config);
 
-    // Provider capability conversion.
-    static AidlAudioCapabilities ToAidlAudioCapabilities(
-            const HidlAudioCapabilities& capabilities);
+    // Provider capability conversion. The vendor union carries no discriminator,
+    // so the session type selects which member is valid.
+    static AidlAudioCapabilities ToAidlAudioCapabilities(const AidlSessionType& session_type,
+                                                         const HidlAudioCapabilities& capabilities);
 };
 
 }  // namespace bluetooth_audio

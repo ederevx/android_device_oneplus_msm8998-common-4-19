@@ -13,15 +13,19 @@
 //
 // The library keeps the AOSP module name because
 // android.hardware.audio.service loads it by that name; the AOSP module of the
-// same name is replaced by this one in the product packages.
+// same name is displaced by the prebuilt below, which is built from this module
+// and installed at the AOSP path. The buildable copy here is what the prebuilt
+// is refreshed from; see the refresh note at the end of this file.
 
 cc_library_shared {
     name: "android.hardware.bluetooth.audio-impl-qti",
-    // android.hardware.audio.service loads the factory from a library with the
-    // AOSP name, so install this build at that path.
+    // Keep the AOSP file name so the refresh step below can copy the built
+    // library over the prebuilt one unchanged.
     stem: "android.hardware.bluetooth.audio-impl",
     vendor: true,
-    vintf_fragments: ["bluetooth_audio.xml"],
+    // Installed outside the library search path: the audio HAL service loads
+    // the prebuilt at the AOSP path, and two install rules cannot share it.
+    relative_install_path: "qti",
     defaults: [
         "aconfig_lib_cc_static_link.defaults",
         "latest_android_hardware_bluetooth_audio_ndk_shared",
@@ -46,7 +50,10 @@ cc_library_shared {
         "service.cpp",
     ],
     export_include_dirs: ["."],
-    header_libs: ["libhardware_headers"],
+    header_libs: [
+        "libhardware_headers",
+        "vendor.qti.hardware.bluetooth_audio@2.0_genc++_headers",
+    ],
     shared_libs: [
         "libbase",
         "libbinder_ndk",
@@ -61,5 +68,58 @@ cc_library_shared {
     ],
     static_libs: [
         "btaudiohal_flags_c_lib",
+    ],
+}
+
+// Displaces the AOSP android.hardware.bluetooth.audio-impl so that
+// android.hardware.audio.service loads this device's factory instead. A
+// prebuilt under the AOSP module name with prefer: true is the supported way to
+// take over its output: the AOSP module and every consumer of it are left
+// untouched, and its install is dropped in favor of this one.
+//
+// The prebuilt is built from the module above; after changing those sources,
+// refresh it with:
+//   ~/scripts/build_lineage -i android.hardware.bluetooth.audio-impl-qti
+//   cp out/target/product/dumpling/vendor/lib64/qti/android.hardware.bluetooth.audio-impl.so \
+//       device/oneplus/msm8998-common/bluetooth_audio/prebuilt/lib64/
+//   cp out/target/product/dumpling/vendor/lib/qti/android.hardware.bluetooth.audio-impl.so \
+//       device/oneplus/msm8998-common/bluetooth_audio/prebuilt/lib/
+cc_prebuilt_library_shared {
+    name: "android.hardware.bluetooth.audio-impl",
+    prefer: true,
+    vendor: true,
+    strip: {
+        none: true,
+    },
+    target: {
+        android_arm: {
+            srcs: ["prebuilt/lib/android.hardware.bluetooth.audio-impl.so"],
+        },
+        android_arm64: {
+            srcs: ["prebuilt/lib64/android.hardware.bluetooth.audio-impl.so"],
+        },
+    },
+    compile_multilib: "both",
+    // The vendor HIDL interface cannot be named here: this prebuilt resolves
+    // apex variants of its shared libraries, and that interface's
+    // apex_available lists an apex that does not exist in this tree. The
+    // runtime dependency is real and is satisfied by the built module above.
+    check_elf_files: false,
+    shared_libs: [
+        "android.hardware.bluetooth.audio-V5-ndk",
+        "libaconfig_storage_read_api_cc",
+        "libbase",
+        "libbinder_ndk",
+        "libbluetooth_audio_session_aidl",
+        "libc++",
+        "libc",
+        "libcutils",
+        "libdl",
+        "libfmq",
+        "libhidlbase",
+        "liblog",
+        "libm",
+        "libutils",
+        "server_configurable_flags",
     ],
 }

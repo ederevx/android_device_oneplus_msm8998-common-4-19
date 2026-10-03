@@ -110,13 +110,13 @@ ndk::ScopedAStatus QtiBluetoothAudioProviderFactory::getProviderCapabilities(
     auto hidl_call_future = hidl_call.get_future();
     qti_factory_->getProviderCapabilities(
             hidl_session_type,
-            [&hidl_call, &_aidl_return](const ::android::hardware::hidl_vec<
-                                                HidlAudioCapabilities>& capabilities) {
+            [&hidl_call, &_aidl_return, &session_type](
+                    const ::android::hardware::hidl_vec<HidlAudioCapabilities>& capabilities) {
                 _aidl_return->clear();
                 _aidl_return->reserve(capabilities.size());
                 for (const auto& capability : capabilities) {
-                    _aidl_return->push_back(
-                            QtiAudioConfigConverter::ToAidlAudioCapabilities(capability));
+                    _aidl_return->push_back(QtiAudioConfigConverter::ToAidlAudioCapabilities(
+                            session_type, capability));
                 }
                 hidl_call.set_value();
             });

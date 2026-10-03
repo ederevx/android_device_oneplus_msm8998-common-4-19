@@ -37,8 +37,7 @@ namespace bluetooth_audio {
 
 using AidlAacConfiguration = ::aidl::android::hardware::bluetooth::audio::AacConfiguration;
 using AidlAptxConfiguration = ::aidl::android::hardware::bluetooth::audio::AptxConfiguration;
-using AidlCodecConfiguration =
-        ::aidl::android::hardware::bluetooth::audio::CodecConfiguration;
+using AidlCodecConfiguration = ::aidl::android::hardware::bluetooth::audio::CodecConfiguration;
 using AidlLdacConfiguration = ::aidl::android::hardware::bluetooth::audio::LdacConfiguration;
 using AidlPcmConfiguration = ::aidl::android::hardware::bluetooth::audio::PcmConfiguration;
 using AidlSbcConfiguration = ::aidl::android::hardware::bluetooth::audio::SbcConfiguration;
@@ -48,10 +47,8 @@ using HidlAptxParameters = ::vendor::qti::hardware::bluetooth_audio::V2_0::AptxP
 using HidlAudioCapabilities = ::vendor::qti::hardware::bluetooth_audio::V2_0::AudioCapabilities;
 using HidlBitsPerSample = ::vendor::qti::hardware::bluetooth_audio::V2_0::BitsPerSample;
 using HidlChannelMode = ::vendor::qti::hardware::bluetooth_audio::V2_0::ChannelMode;
-using HidlCodecCapabilities =
-        ::vendor::qti::hardware::bluetooth_audio::V2_0::CodecCapabilities;
-using HidlCodecConfiguration =
-        ::vendor::qti::hardware::bluetooth_audio::V2_0::CodecConfiguration;
+using HidlCodecCapabilities = ::vendor::qti::hardware::bluetooth_audio::V2_0::CodecCapabilities;
+using HidlCodecConfiguration = ::vendor::qti::hardware::bluetooth_audio::V2_0::CodecConfiguration;
 using HidlCodecType = ::vendor::qti::hardware::bluetooth_audio::V2_0::CodecType;
 using HidlLdacParameters = ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacParameters;
 using HidlPcmParameters = ::vendor::qti::hardware::bluetooth_audio::V2_0::PcmParameters;
@@ -86,12 +83,12 @@ HidlSampleRate ToHidlSampleRate(int32_t sample_rate_hz) {
 }
 
 std::vector<int32_t> ToAidlSampleRates(HidlSampleRate sample_rate) {
-    // RATE_24000 shares a bit with no other rate in this vendor interface.
+    // The vendor bitfield packs 24000 and 32000 into the high bits.
     const std::pair<HidlSampleRate, int32_t> kRates[] = {
-            {HidlSampleRate::RATE_44100, 44100}, {HidlSampleRate::RATE_48000, 48000},
-            {HidlSampleRate::RATE_88200, 88200}, {HidlSampleRate::RATE_96000, 96000},
+            {HidlSampleRate::RATE_44100, 44100},   {HidlSampleRate::RATE_48000, 48000},
+            {HidlSampleRate::RATE_88200, 88200},   {HidlSampleRate::RATE_96000, 96000},
             {HidlSampleRate::RATE_176400, 176400}, {HidlSampleRate::RATE_192000, 192000},
-            {HidlSampleRate::RATE_16000, 16000}, {HidlSampleRate::RATE_24000, 24000},
+            {HidlSampleRate::RATE_16000, 16000},   {HidlSampleRate::RATE_24000, 24000},
             {HidlSampleRate::RATE_32000, 32000},
     };
     std::vector<int32_t> rates;
@@ -118,13 +115,16 @@ HidlBitsPerSample ToHidlBitsPerSample(int8_t bits_per_sample) {
 
 std::vector<uint8_t> ToAidlBitsPerSample(HidlBitsPerSample bits_per_sample) {
     std::vector<uint8_t> bits;
-    if (static_cast<uint32_t>(bits_per_sample) & static_cast<uint32_t>(HidlBitsPerSample::BITS_16)) {
+    if (static_cast<uint32_t>(bits_per_sample) &
+        static_cast<uint32_t>(HidlBitsPerSample::BITS_16)) {
         bits.push_back(16);
     }
-    if (static_cast<uint32_t>(bits_per_sample) & static_cast<uint32_t>(HidlBitsPerSample::BITS_24)) {
+    if (static_cast<uint32_t>(bits_per_sample) &
+        static_cast<uint32_t>(HidlBitsPerSample::BITS_24)) {
         bits.push_back(24);
     }
-    if (static_cast<uint32_t>(bits_per_sample) & static_cast<uint32_t>(HidlBitsPerSample::BITS_32)) {
+    if (static_cast<uint32_t>(bits_per_sample) &
+        static_cast<uint32_t>(HidlBitsPerSample::BITS_32)) {
         bits.push_back(32);
     }
     return bits;
@@ -156,8 +156,7 @@ std::vector<::aidl::android::hardware::bluetooth::audio::ChannelMode> ToAidlChan
     return modes;
 }
 
-HidlCodecType ToHidlCodecType(
-        ::aidl::android::hardware::bluetooth::audio::CodecType codec_type) {
+HidlCodecType ToHidlCodecType(::aidl::android::hardware::bluetooth::audio::CodecType codec_type) {
     using AidlCodecType = ::aidl::android::hardware::bluetooth::audio::CodecType;
     switch (codec_type) {
         case AidlCodecType::SBC:
@@ -205,12 +204,9 @@ HidlSbcParameters ToHidlSbcParameters(const AidlSbcConfiguration& sbc_config) {
     using AidlSbcAllocMethod = ::aidl::android::hardware::bluetooth::audio::SbcAllocMethod;
     using AidlSbcChannelMode = ::aidl::android::hardware::bluetooth::audio::SbcChannelMode;
     using HidlSbcAllocMethod = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcAllocMethod;
-    using HidlSbcBlockLength =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcBlockLength;
-    using HidlSbcChannelMode =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcChannelMode;
-    using HidlSbcNumSubbands =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcNumSubbands;
+    using HidlSbcBlockLength = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcBlockLength;
+    using HidlSbcChannelMode = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcChannelMode;
+    using HidlSbcNumSubbands = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcNumSubbands;
 
     HidlSbcParameters parameters;
     parameters.sampleRate = ToHidlSampleRate(sbc_config.sampleRateHz);
@@ -244,9 +240,6 @@ HidlSbcParameters ToHidlSbcParameters(const AidlSbcConfiguration& sbc_config) {
         case 12:
             parameters.blockLength = HidlSbcBlockLength::BLOCKS_12;
             break;
-        case 16:
-            parameters.blockLength = HidlSbcBlockLength::BLOCKS_16;
-            break;
         default:
             parameters.blockLength = HidlSbcBlockLength::BLOCKS_16;
             break;
@@ -255,16 +248,13 @@ HidlSbcParameters ToHidlSbcParameters(const AidlSbcConfiguration& sbc_config) {
         case 4:
             parameters.numSubbands = HidlSbcNumSubbands::SUBBAND_4;
             break;
-        case 8:
-            parameters.numSubbands = HidlSbcNumSubbands::SUBBAND_8;
-            break;
         default:
             parameters.numSubbands = HidlSbcNumSubbands::SUBBAND_8;
             break;
     }
     parameters.allocMethod = sbc_config.allocMethod == AidlSbcAllocMethod::ALLOC_MD_S
-                                    ? HidlSbcAllocMethod::ALLOC_MD_S
-                                    : HidlSbcAllocMethod::ALLOC_MD_L;
+                                     ? HidlSbcAllocMethod::ALLOC_MD_S
+                                     : HidlSbcAllocMethod::ALLOC_MD_L;
     return parameters;
 }
 
@@ -304,8 +294,7 @@ HidlAacParameters ToHidlAacParameters(const AidlAacConfiguration& aac_config) {
 HidlLdacParameters ToHidlLdacParameters(const AidlLdacConfiguration& ldac_config) {
     using AidlLdacChannelMode = ::aidl::android::hardware::bluetooth::audio::LdacChannelMode;
     using AidlLdacQualityIndex = ::aidl::android::hardware::bluetooth::audio::LdacQualityIndex;
-    using HidlLdacChannelMode =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacChannelMode;
+    using HidlLdacChannelMode = ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacChannelMode;
     using HidlLdacQualityIndex =
             ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacQualityIndex;
 
@@ -351,37 +340,32 @@ HidlAptxParameters ToHidlAptxParameters(const AidlAptxConfiguration& aptx_config
     return parameters;
 }
 
-HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& codec_config) {
-    HidlCodecConfiguration configuration;
-    configuration.codecType = ToHidlCodecType(codec_config.codecType);
-    configuration.encodedAudioBitrate = static_cast<uint32_t>(codec_config.encodedAudioBitrate);
-    configuration.peerMtu = static_cast<uint16_t>(codec_config.peerMtu);
-    configuration.isScmstEnabled = codec_config.isScmstEnabled;
+bool ToHidlCodecConfiguration(const AidlCodecConfiguration& codec_config,
+                              HidlCodecConfiguration* configuration) {
+    configuration->codecType = ToHidlCodecType(codec_config.codecType);
+    configuration->encodedAudioBitrate = static_cast<uint32_t>(codec_config.encodedAudioBitrate);
+    configuration->peerMtu = static_cast<uint16_t>(codec_config.peerMtu);
+    configuration->isScmstEnabled = codec_config.isScmstEnabled;
     switch (codec_config.config.getTag()) {
         case AidlCodecConfiguration::CodecSpecific::sbcConfig:
-            configuration.config.sbcConfig(ToHidlSbcParameters(
-                    codec_config.config
-                            .get<AidlCodecConfiguration::CodecSpecific::sbcConfig>()));
-            break;
+            configuration->config.sbcConfig = ToHidlSbcParameters(
+                    codec_config.config.get<AidlCodecConfiguration::CodecSpecific::sbcConfig>());
+            return true;
         case AidlCodecConfiguration::CodecSpecific::aacConfig:
-            configuration.config.aacConfig(ToHidlAacParameters(
-                    codec_config.config
-                            .get<AidlCodecConfiguration::CodecSpecific::aacConfig>()));
-            break;
+            configuration->config.aacConfig = ToHidlAacParameters(
+                    codec_config.config.get<AidlCodecConfiguration::CodecSpecific::aacConfig>());
+            return true;
         case AidlCodecConfiguration::CodecSpecific::ldacConfig:
-            configuration.config.ldacConfig(ToHidlLdacParameters(
-                    codec_config.config
-                            .get<AidlCodecConfiguration::CodecSpecific::ldacConfig>()));
-            break;
+            configuration->config.ldacConfig = ToHidlLdacParameters(
+                    codec_config.config.get<AidlCodecConfiguration::CodecSpecific::ldacConfig>());
+            return true;
         case AidlCodecConfiguration::CodecSpecific::aptxConfig:
-            configuration.config.aptxConfig(ToHidlAptxParameters(
-                    codec_config.config
-                            .get<AidlCodecConfiguration::CodecSpecific::aptxConfig>()));
-            break;
+            configuration->config.aptxConfig = ToHidlAptxParameters(
+                    codec_config.config.get<AidlCodecConfiguration::CodecSpecific::aptxConfig>());
+            return true;
         default:
-            return configuration;
+            return false;
     }
-    return configuration;
 }
 
 ::aidl::android::hardware::bluetooth::audio::SbcCapabilities ToAidlSbcCapabilities(
@@ -389,12 +373,9 @@ HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& co
     using AidlSbcAllocMethod = ::aidl::android::hardware::bluetooth::audio::SbcAllocMethod;
     using AidlSbcChannelMode = ::aidl::android::hardware::bluetooth::audio::SbcChannelMode;
     using HidlSbcAllocMethod = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcAllocMethod;
-    using HidlSbcBlockLength =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcBlockLength;
-    using HidlSbcChannelMode =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcChannelMode;
-    using HidlSbcNumSubbands =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcNumSubbands;
+    using HidlSbcBlockLength = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcBlockLength;
+    using HidlSbcChannelMode = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcChannelMode;
+    using HidlSbcNumSubbands = ::vendor::qti::hardware::bluetooth_audio::V2_0::SbcNumSubbands;
 
     ::aidl::android::hardware::bluetooth::audio::SbcCapabilities capabilities;
     capabilities.sampleRateHz = ToAidlSampleRates(parameters.sampleRate);
@@ -412,7 +393,7 @@ HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& co
             capabilities.channelMode.push_back(mode);
         }
     }
-    const std::pair<HidlSbcBlockLength, uint8_t> kBlockLengths[] = {
+    const std::pair<HidlSbcBlockLength, int8_t> kBlockLengths[] = {
             {HidlSbcBlockLength::BLOCKS_4, 4},
             {HidlSbcBlockLength::BLOCKS_8, 8},
             {HidlSbcBlockLength::BLOCKS_12, 12},
@@ -423,7 +404,7 @@ HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& co
             capabilities.blockLength.push_back(length);
         }
     }
-    const std::pair<HidlSbcNumSubbands, uint8_t> kSubbands[] = {
+    const std::pair<HidlSbcNumSubbands, int8_t> kSubbands[] = {
             {HidlSbcNumSubbands::SUBBAND_4, 4},
             {HidlSbcNumSubbands::SUBBAND_8, 8},
     };
@@ -474,8 +455,7 @@ HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& co
 ::aidl::android::hardware::bluetooth::audio::LdacCapabilities ToAidlLdacCapabilities(
         const HidlLdacParameters& parameters) {
     using AidlLdacChannelMode = ::aidl::android::hardware::bluetooth::audio::LdacChannelMode;
-    using HidlLdacChannelMode =
-            ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacChannelMode;
+    using HidlLdacChannelMode = ::vendor::qti::hardware::bluetooth_audio::V2_0::LdacChannelMode;
 
     ::aidl::android::hardware::bluetooth::audio::LdacCapabilities capabilities;
     capabilities.sampleRateHz = ToAidlSampleRates(parameters.sampleRate);
@@ -506,6 +486,40 @@ HidlCodecConfiguration ToHidlCodecConfiguration(const AidlCodecConfiguration& co
     capabilities.sampleRateHz = ToAidlSampleRates(parameters.sampleRate);
     capabilities.channelMode = ToAidlChannelModes(parameters.channelMode);
     capabilities.bitsPerSample = ToAidlBitsPerSample(parameters.bitsPerSample);
+    return capabilities;
+}
+
+::aidl::android::hardware::bluetooth::audio::CodecCapabilities ToAidlCodecCapabilities(
+        const HidlCodecCapabilities& codec) {
+    ::aidl::android::hardware::bluetooth::audio::CodecCapabilities capabilities;
+    capabilities.codecType = ToAidlCodecType(codec.codecType);
+    switch (codec.codecType) {
+        case HidlCodecType::SBC:
+            capabilities.capabilities.set<::aidl::android::hardware::bluetooth::audio::
+                                                   CodecCapabilities::Capabilities::sbcCapabilities>(
+                    ToAidlSbcCapabilities(codec.capabilities.sbcCapabilities));
+            break;
+        case HidlCodecType::AAC:
+            capabilities.capabilities.set<::aidl::android::hardware::bluetooth::audio::
+                                                   CodecCapabilities::Capabilities::aacCapabilities>(
+                    ToAidlAacCapabilities(codec.capabilities.aacCapabilities));
+            break;
+        case HidlCodecType::LDAC:
+            capabilities.capabilities.set<::aidl::android::hardware::bluetooth::audio::
+                                                   CodecCapabilities::Capabilities::ldacCapabilities>(
+                    ToAidlLdacCapabilities(codec.capabilities.ldacCapabilities));
+            break;
+        case HidlCodecType::APTX:
+        case HidlCodecType::APTX_HD:
+            capabilities.capabilities.set<::aidl::android::hardware::bluetooth::audio::
+                                                   CodecCapabilities::Capabilities::aptxCapabilities>(
+                    ToAidlAptxCapabilities(codec.capabilities.aptxCapabilities));
+            break;
+        default:
+            LOG(WARNING) << __func__ << ": unsupported codec capabilities, type="
+                         << static_cast<uint32_t>(codec.codecType);
+            break;
+    }
     return capabilities;
 }
 
@@ -552,21 +566,12 @@ bool QtiAudioConfigConverter::ToHidlAudioConfig(const AidlAudioConfig& audio_con
                                                 HidlAudioConfig* hidl_audio_config) {
     switch (audio_config.getTag()) {
         case AidlAudioConfig::pcmConfig:
-            hidl_audio_config->pcmConfig(ToHidlPcmParameters(
-                    audio_config.get<AidlAudioConfig::pcmConfig>()));
+            hidl_audio_config->pcmConfig =
+                    ToHidlPcmParameters(audio_config.get<AidlAudioConfig::pcmConfig>());
             return true;
-        case AidlAudioConfig::a2dpConfig: {
-            const auto& codec_config = audio_config.get<AidlAudioConfig::a2dpConfig>();
-            if (codec_config.config.getTag() ==
-                        AidlCodecConfiguration::CodecSpecific::vendorConfig ||
-                codec_config.codecType ==
-                        ::aidl::android::hardware::bluetooth::audio::CodecType::VENDOR) {
-                LOG(WARNING) << __func__ << ": vendor codecs are not bridged to the vendor provider";
-                return false;
-            }
-            hidl_audio_config->codecConfig(ToHidlCodecConfiguration(codec_config));
-            return true;
-        }
+        case AidlAudioConfig::a2dpConfig:
+            return ToHidlCodecConfiguration(audio_config.get<AidlAudioConfig::a2dpConfig>(),
+                                            &hidl_audio_config->codecConfig);
         default:
             LOG(WARNING) << __func__ << ": unsupported audio configuration tag "
                          << static_cast<int32_t>(audio_config.getTag());
@@ -575,11 +580,19 @@ bool QtiAudioConfigConverter::ToHidlAudioConfig(const AidlAudioConfig& audio_con
 }
 
 QtiAudioConfigConverter::AidlAudioCapabilities QtiAudioConfigConverter::ToAidlAudioCapabilities(
-        const HidlAudioCapabilities& capabilities) {
+        const AidlSessionType& session_type, const HidlAudioCapabilities& capabilities) {
     AidlAudioCapabilities aidl_capabilities;
-    switch (capabilities.getDiscriminator()) {
-        case HidlAudioCapabilities::hidl_discriminator::pcmCapabilities: {
-            const HidlPcmParameters& pcm = capabilities.pcmCapabilities();
+    switch (session_type) {
+        case AidlSessionType::A2DP_HARDWARE_OFFLOAD_ENCODING_DATAPATH:
+        case AidlSessionType::A2DP_HARDWARE_OFFLOAD_DECODING_DATAPATH:
+            // The vendor union carries no discriminator; the session type says
+            // the codec member is the valid one.
+            aidl_capabilities.set<AidlAudioCapabilities::a2dpCapabilities>(
+                    ToAidlCodecCapabilities(capabilities.codecCapabilities));
+            break;
+        default: {
+            // Every other session the vendor provider serves carries PCM.
+            const HidlPcmParameters& pcm = capabilities.pcmCapabilities;
             ::aidl::android::hardware::bluetooth::audio::PcmCapabilities aidl_pcm;
             aidl_pcm.sampleRateHz = ToAidlSampleRates(pcm.sampleRate);
             aidl_pcm.channelMode = ToAidlChannelModes(pcm.channelMode);
@@ -588,44 +601,6 @@ QtiAudioConfigConverter::AidlAudioCapabilities QtiAudioConfigConverter::ToAidlAu
             aidl_capabilities.set<AidlAudioCapabilities::pcmCapabilities>(aidl_pcm);
             break;
         }
-        case HidlAudioCapabilities::hidl_discriminator::codecCapabilities: {
-            const HidlCodecCapabilities& codec = capabilities.codecCapabilities();
-            ::aidl::android::hardware::bluetooth::audio::CodecCapabilities aidl_codec;
-            aidl_codec.codecType = ToAidlCodecType(codec.codecType);
-            switch (codec.capabilities.getDiscriminator()) {
-                case HidlCodecCapabilities::Capabilities::hidl_discriminator::sbcCapabilities:
-                    aidl_codec.capabilities.set<
-                            ::aidl::android::hardware::bluetooth::audio::CodecCapabilities::
-                                    Capabilities::sbcCapabilities>(
-                            ToAidlSbcCapabilities(codec.capabilities.sbcCapabilities()));
-                    break;
-                case HidlCodecCapabilities::Capabilities::hidl_discriminator::aacCapabilities:
-                    aidl_codec.capabilities.set<
-                            ::aidl::android::hardware::bluetooth::audio::CodecCapabilities::
-                                    Capabilities::aacCapabilities>(
-                            ToAidlAacCapabilities(codec.capabilities.aacCapabilities()));
-                    break;
-                case HidlCodecCapabilities::Capabilities::hidl_discriminator::ldacCapabilities:
-                    aidl_codec.capabilities.set<
-                            ::aidl::android::hardware::bluetooth::audio::CodecCapabilities::
-                                    Capabilities::ldacCapabilities>(
-                            ToAidlLdacCapabilities(codec.capabilities.ldacCapabilities()));
-                    break;
-                case HidlCodecCapabilities::Capabilities::hidl_discriminator::aptxCapabilities:
-                    aidl_codec.capabilities.set<
-                            ::aidl::android::hardware::bluetooth::audio::CodecCapabilities::
-                                    Capabilities::aptxCapabilities>(
-                            ToAidlAptxCapabilities(codec.capabilities.aptxCapabilities()));
-                    break;
-                default:
-                    LOG(WARNING) << __func__ << ": unsupported codec capabilities";
-                    break;
-            }
-            aidl_capabilities.set<AidlAudioCapabilities::a2dpCapabilities>(aidl_codec);
-            break;
-        }
-        default:
-            break;
     }
     return aidl_capabilities;
 }

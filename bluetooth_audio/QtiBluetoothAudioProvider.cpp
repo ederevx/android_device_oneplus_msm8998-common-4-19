@@ -39,7 +39,6 @@ using HidlStatus = ::vendor::qti::hardware::bluetooth_audio::V2_0::Status;
 namespace {
 
 struct DeathCookie {
-    ::ndk::ScopedAIBinder_DeathRecipient* recipient;
     std::shared_ptr<QtiBluetoothAudioProvider> provider;
 };
 
@@ -125,7 +124,7 @@ ndk::ScopedAStatus QtiBluetoothAudioProvider::startSession(
     stack_iface_ = host_if;
     AIBinder_linkToDeath(
             stack_iface_->asBinder().get(), death_recipient_.get(),
-            new DeathCookie{death_recipient_.get(), ref<QtiBluetoothAudioProvider>()});
+            new DeathCookie{ref<QtiBluetoothAudioProvider>()});
     return ndk::ScopedAStatus::ok();
 }
 

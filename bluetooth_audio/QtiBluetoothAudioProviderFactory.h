@@ -49,7 +49,7 @@ class QtiBluetoothAudioProviderFactory
     // session store it feeds.
     bool LoadQtiFactory();
 
-    const ::aidl::android::hardware::bluetooth::audio::BluetoothAudioProviderFactory aosp_factory_;
+    ::aidl::android::hardware::bluetooth::audio::BluetoothAudioProviderFactory aosp_factory_;
     ::android::sp<::vendor::qti::hardware::bluetooth_audio::V2_0::IBluetoothAudioProvidersFactory>
             qti_factory_;
 };

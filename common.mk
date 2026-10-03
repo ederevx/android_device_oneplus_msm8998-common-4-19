@@ -123,6 +123,7 @@ PRODUCT_COPY_FILES += \
 
 # Bluetooth
 PRODUCT_PACKAGES += \
+    android.hardware.bluetooth.audio-impl \
     android.hardware.bluetooth.audio-impl-qti \
     audio.bluetooth.default \
     liba2dpoffload \
