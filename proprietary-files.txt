@@ -58,13 +58,19 @@ vendor/lib64/hw/com.dsi.ant@1.0-impl.so|6e2b594b44552b42000164c091af5cf7a4c508f5
 
 # Audio
 vendor/lib/libacdb-fts.so
+vendor/lib64/libacdb-fts.so
 vendor/lib/libacdbloader.so
+vendor/lib64/libacdbloader.so
 vendor/lib/libacdbrtac.so
+vendor/lib64/libacdbrtac.so
 vendor/lib/libadiertac.so
+vendor/lib64/libadiertac.so
 vendor/lib/libadm.so
 vendor/lib/libaudcal.so
+vendor/lib64/libaudcal.so
 vendor/lib/libaudioalsa.so
 vendor/lib/libaudioparsers.so
+vendor/lib64/libaudioparsers.so
 vendor/lib/libdrc.so
 vendor/lib/libqtigef.so
 vendor/lib/soundfx/libasphere.so
