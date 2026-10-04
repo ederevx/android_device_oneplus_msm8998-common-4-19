@@ -1,4 +1,0 @@
-service vendor.slider-hal-1-0 /vendor/bin/hw/vendor.lineage.slider-service.oneplus_msm8998
-    class hal
-    user system
-    group system

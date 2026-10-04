@@ -274,7 +274,7 @@ $(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
 
 # Slider
 PRODUCT_PACKAGES += \
-    vendor.lineage.slider-service.oneplus_msm8998
+    vendor.lineage.slider-service.oneplus
 
 # Media
 PRODUCT_COPY_FILES += \

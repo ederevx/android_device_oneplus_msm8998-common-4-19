@@ -134,6 +134,8 @@ include device/lineage/sepolicy/libperfmgr/sepolicy.mk
 include device/qcom/sepolicy-legacy-um/SEPolicy.mk
 
 BOARD_VENDOR_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/vendor
+# Shared slider HAL policy (interface + service live in hardware/oneplus)
+BOARD_VENDOR_SEPOLICY_DIRS += hardware/oneplus/sepolicy
 PRODUCT_PRIVATE_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/private
 PRODUCT_PUBLIC_SEPOLICY_DIRS += $(PLATFORM_PATH)/sepolicy/public
 
