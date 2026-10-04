@@ -1,1 +1,4 @@
-user=radio seinfo=platform name=.qtidataservices domain=qtidataservices_app type=radio_data_file
+# Alert-slider handler runs in its own domain so it can hold the uevent netlink
+# socket without widening system_app. System uid + platform signature are kept,
+# so its data stays under system_app_data_file.
+user=system seinfo=platform name=org.lineageos.settings.device domain=keyhandler_app type=system_app_data_file

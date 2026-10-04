@@ -1,0 +1,21 @@
+# The alert-slider handler: a platform-signed, system-UID app that runs its own
+# UEventObserver for the tri-state switch. It is started as a Service by
+# BootCompletedReceiver, so it needs the kernel uevent netlink socket itself.
+
+type keyhandler_app, domain, coredomain;
+app_domain(keyhandler_app)
+
+# Kernel uevents for the tri-state switch (switch-class and extcon).
+allow keyhandler_app self:netlink_kobject_uevent_socket create_socket_perms_no_ioctl;
+
+# Its own storage; seapp_contexts labels it system_app_data_file, and these
+# mirror what system_app.te grants for that type.
+allow keyhandler_app system_app_data_file:dir create_dir_perms;
+allow keyhandler_app system_app_data_file:{ file lnk_file } create_file_perms;
+
+# Services it looks up by name. binder_call to system_server itself already
+# comes from app.te's binder_call(appdomain, binderservicedomain).
+allow keyhandler_app audio_service:service_manager find;
+allow keyhandler_app notification_service:service_manager find;
+allow keyhandler_app vibrator_service:service_manager find;
+allow keyhandler_app activity_service:service_manager find;
