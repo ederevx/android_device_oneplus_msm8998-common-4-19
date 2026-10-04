@@ -839,3 +839,10 @@ vendor/lib64/vendor.qti.hardware.tui_comm@1.0.so
 
 # Wi-Fi
 vendor/bin/cnss-daemon
+
+# Imported from an SDM660 device vendor tree (TheMuppets xiaomi sdm660-common).
+# The OnePlus stock dump does not ship this library, so extract-files.py cannot
+# fetch it; the blob is committed to vendor/oneplus/msm8998-common instead.
+# 32-bit only (no lib64 build exists). Lets libOmxVenc dlopen libvqzip.so for
+# the _VQZIP_ path enabled on msm8998.
+vendor/lib/libvqzip.so
