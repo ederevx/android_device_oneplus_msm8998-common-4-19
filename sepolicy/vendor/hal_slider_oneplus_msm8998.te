@@ -1,0 +1,13 @@
+# Outlives a dead framework consumer and can serve the current position to a
+# restarted client; reuses the lineage touch HAL plumbing.
+
+type hal_slider_oneplus_msm8998, domain;
+type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
+
+hal_server_domain(hal_slider_oneplus_msm8998, hal_lineage_touch)
+init_daemon_domain(hal_slider_oneplus_msm8998)
+
+# write/append are neverallowed for appdomain; this class is read-only.
+allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
+    create read getattr setattr lock bind connect getopt setopt shutdown map
+};
