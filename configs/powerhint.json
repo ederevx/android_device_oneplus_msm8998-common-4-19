@@ -82,6 +82,29 @@
       "ResetOnInit": true
     },
     {
+      "Name": "TAUclampMin",
+      "Path": "/proc/vendor_sched/ta_uclamp_min",
+      "Values": [
+        "410",
+        "308",
+        "205",
+        "103",
+        "819"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
+      "Name": "TAPreferIdle",
+      "Path": "/proc/vendor_sched/ta_prefer_idle",
+      "Values": [
+        "0",
+        "1"
+      ],
+      "DefaultIndex": 0,
+      "ResetOnInit": true
+    },
+    {
       "Name": "CPUBWHystTriggerCount",
       "Path": "/sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_trigger_count",
       "Values": [
@@ -324,6 +347,18 @@
       "Node": "CPULittleClusterMinFreq",
       "Duration": 0,
       "Value": "1171200"
+    },
+    {
+      "PowerHint": "INTERACTION",
+      "Node": "TAUclampMin",
+      "Duration": 0,
+      "Value": "819"
+    },
+    {
+      "PowerHint": "LAUNCH",
+      "Node": "TAUclampMin",
+      "Duration": 3000,
+      "Value": "819"
     },
     {
       "PowerHint": "INTERACTION",
