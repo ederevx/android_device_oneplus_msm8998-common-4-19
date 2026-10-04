@@ -350,12 +350,13 @@ on property:sys.boot_completed=1
     write /proc/sys/vm/swappiness 100
 
     # Measured configuration: top-app back to its default minimum floor and the
-    # foreground and system floors at zero. The top-app prefer-idle flag belongs
-    # to the power HAL's TAPreferIdle node, and no measurement separates the
-    # foreground flag, so neither is written here.
+    # foreground and system floors at zero. The boot hold sets ta_prefer_idle and
+    # nothing clears it now that the power HAL's TAPreferIdle node is gone, so
+    # top-app latency_sensitive would otherwise stay set for the whole uptime.
     write /proc/vendor_sched/ta_uclamp_min 1
     write /proc/vendor_sched/fg_uclamp_min 0
     write /proc/vendor_sched/sys_uclamp_min 0
+    write /proc/vendor_sched/ta_prefer_idle 0
     write /proc/vendor_sched/sys_prefer_idle 0
 
     # util_est rampup multiplier: 1 is the no-rampup default; the power HAL
