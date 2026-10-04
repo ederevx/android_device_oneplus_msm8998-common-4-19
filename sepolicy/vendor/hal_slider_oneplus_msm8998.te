@@ -1,0 +1,17 @@
+# Always-alive authority for the alert slider. A vendor HAL is restarted by
+# init and never killed by the app killer, so it observes every movement even
+# while a framework-side consumer is dead, and serves the current position to
+# a restarted client. It uses the hal_lineage_touch HAL attribute so the
+# existing lineage touch client plumbing applies.
+
+type hal_slider_oneplus_msm8998, domain;
+type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
+
+hal_server_domain(hal_slider_oneplus_msm8998, hal_lineage_touch)
+init_daemon_domain(hal_slider_oneplus_msm8998)
+
+# Kernel uevents for the tri-state slider. write/append are excluded because
+# app.te:573 neverallows them for appdomain and the class is read-only here.
+allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
+    create read getattr setattr lock bind connect getopt setopt shutdown map
+};
