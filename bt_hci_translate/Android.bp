@@ -1,0 +1,24 @@
+// Userspace HCI translation layer for the QTI SLIMbus A2DP offload.
+// Replaces the vendor HIDL IBluetoothHci impl; the stock impl is installed as
+// android.hardware.bluetooth@1.0-impl-qti-orig.so and wrapped by this library.
+cc_library_shared {
+    name: "bt_hci_translate",
+    owner: "oneplus",
+    vendor: true,
+    relative_install_path: "hw",
+    stem: "android.hardware.bluetooth@1.0-impl-qti",
+    compile_multilib: "64",
+    srcs: ["bluetooth_hci_translate.cpp"],
+    shared_libs: [
+        "android.hardware.bluetooth@1.0",
+        "libbase",
+        "libhidlbase",
+        "liblog",
+        "libutils",
+        "libdl",
+    ],
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
