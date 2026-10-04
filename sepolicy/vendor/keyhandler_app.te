@@ -23,3 +23,8 @@ allow keyhandler_app audio_service:service_manager find;
 allow keyhandler_app notification_service:service_manager find;
 allow keyhandler_app vibrator_service:service_manager find;
 allow keyhandler_app activity_service:service_manager find;
+
+# Bind the always-alive slider HAL. It reuses the hal_lineage_touch attribute,
+# and this app is keyhandler_app rather than system_app, so it needs the client
+# attribute explicitly (system_app already has it).
+hal_client_domain(keyhandler_app, hal_lineage_touch)
