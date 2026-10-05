@@ -59,10 +59,6 @@ ro.surface_flinger.max_frame_buffer_acquired_buffers=3
 ro.surface_flinger.max_virtual_display_dimension=4096
 ro.surface_flinger.protected_contents=true
 
-# Dirac
-persist.dirac.acs.controller=qem
-ro.dirac.acs.storeSettings=1
-ro.dirac.acs.ignore_error=1
 
 # TimeService
 persist.timed.enable=true
