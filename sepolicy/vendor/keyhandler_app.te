@@ -1,0 +1,20 @@
+# Alert-slider handler: a platform-signed, system-UID app observing the
+# tri-state switch.
+
+type keyhandler_app, domain, coredomain;
+app_domain(keyhandler_app)
+
+# write/append are neverallowed for appdomain on this read-only class.
+allow keyhandler_app self:netlink_kobject_uevent_socket {
+    create read getattr setattr lock bind connect getopt setopt shutdown map
+};
+
+# Labelled system_app_data_file by seapp_contexts, mirroring system_app.te.
+allow keyhandler_app system_app_data_file:dir create_dir_perms;
+allow keyhandler_app system_app_data_file:{ file lnk_file } create_file_perms;
+
+# Looked up by name; the binder call to system_server comes from app.te.
+allow keyhandler_app audio_service:service_manager find;
+allow keyhandler_app notification_service:service_manager find;
+allow keyhandler_app vibrator_service:service_manager find;
+allow keyhandler_app activity_service:service_manager find;
