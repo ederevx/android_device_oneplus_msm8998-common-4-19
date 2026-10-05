@@ -7,6 +7,14 @@ type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
 hal_server_domain(hal_slider_oneplus_msm8998, hal_lineage_touch)
 init_daemon_domain(hal_slider_oneplus_msm8998)
 
+# Not a bare call: the same transaction carries the service's binder object, so
+# binder_transfer_binder() also asks for { transfer }.
+binder_call(hal_slider_oneplus_msm8998, servicemanager)
+
+# libbase opens /dev/kmsg itself, and with open_perms enabled that open also
+# asks for { open }, so w_file_perms covers both.
+allow hal_slider_oneplus_msm8998 kmsg_device:chr_file w_file_perms;
+
 # write/append are neverallowed for appdomain; this class is read-only.
 allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
     create read getattr setattr lock bind connect getopt setopt shutdown map
