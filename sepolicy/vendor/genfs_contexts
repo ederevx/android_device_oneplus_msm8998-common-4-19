@@ -113,6 +113,7 @@ genfscon sysfs /devices/virtual/misc/msm_wmapro/wakeup                    u:obje
 
 genfscon sysfs /devices/platform/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:4/block/sde/queue/discard_max_bytes  u:object_r:sysfs_mmc_host:s0
 genfscon sysfs /devices/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:4/block/sde/queue/discard_max_bytes           u:object_r:sysfs_mmc_host:s0
+genfscon sysfs /devices/platform/soc/1da4000.ufshc/host0/target0:0:0/0:0:0:0/block/sda/queue/discard_max_bytes  u:object_r:sysfs_mmc_host:s0
 
 genfscon sysfs /devices/platform/soc/4080000.qcom,mss/subsys0/name          u:object_r:sysfs_ssr:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,ipa_fws@1e08000/subsys1/name  u:object_r:sysfs_ssr:s0
