@@ -10,6 +10,23 @@ type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
 hal_server_domain(hal_slider_oneplus_msm8998, hal_lineage_touch)
 init_daemon_domain(hal_slider_oneplus_msm8998)
 
+# Registering the service with servicemanager. The kernel checks this exchange in
+# two steps: binder_transaction() asks for { call } before the transaction carries
+# the service's binder object, which binder_transfer_binder() then checks as
+# { transfer }. The device capture only ever showed { call }, because the
+# transaction is refused there and the object transfer is never reached; both are
+# needed, so use the pair rather than a bare call.
+binder_call(hal_slider_oneplus_msm8998, servicemanager)
+
+# Logging. The service routes every line through libbase's KernelLogger
+# (service.cpp sets android::base::KernelLogger) and its .rc declares no
+# `file /dev/kmsg w`, so libbase opens /dev/kmsg itself. inode_permission()
+# checks that open as { write } and only selinux_file_open() adds { open }, the
+# latter solely because the open_perms policy capability is enabled here, so
+# w_file_perms is required to cover both. This is a logging channel, not the
+# cause of the startup abort.
+allow hal_slider_oneplus_msm8998 kmsg_device:chr_file w_file_perms;
+
 # Kernel uevents for the tri-state slider. write/append are excluded because
 # app.te:573 neverallows them for appdomain and the class is read-only here.
 allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
