@@ -1,30 +1,23 @@
-# The alert-slider handler: a platform-signed, system-UID app that runs its own
-# UEventObserver for the tri-state switch. It is started as a Service by
-# BootCompletedReceiver, so it needs the kernel uevent netlink socket itself.
+# Alert-slider handler: a platform-signed, system-UID app observing the
+# tri-state switch.
 
 type keyhandler_app, domain, coredomain;
 app_domain(keyhandler_app)
 
-# Kernel uevents for the tri-state switch (switch-class and extcon).
-# app.te:573 neverallows write/append on this class for appdomain, and
-# UEventObserver only reads the uevents, so those two are excluded.
+# write/append are neverallowed for appdomain on this read-only class.
 allow keyhandler_app self:netlink_kobject_uevent_socket {
     create read getattr setattr lock bind connect getopt setopt shutdown map
 };
 
-# Its own storage; seapp_contexts labels it system_app_data_file, and these
-# mirror what system_app.te grants for that type.
+# Labelled system_app_data_file by seapp_contexts, mirroring system_app.te.
 allow keyhandler_app system_app_data_file:dir create_dir_perms;
 allow keyhandler_app system_app_data_file:{ file lnk_file } create_file_perms;
 
-# Services it looks up by name. binder_call to system_server itself already
-# comes from app.te's binder_call(appdomain, binderservicedomain).
+# Looked up by name; the binder call to system_server comes from app.te.
 allow keyhandler_app audio_service:service_manager find;
 allow keyhandler_app notification_service:service_manager find;
 allow keyhandler_app vibrator_service:service_manager find;
 allow keyhandler_app activity_service:service_manager find;
 
-# Bind the always-alive slider HAL. It reuses the hal_lineage_touch attribute,
-# and this app is keyhandler_app rather than system_app, so it needs the client
-# attribute explicitly (system_app already has it).
+# The client attribute is explicit because this is keyhandler_app, not system_app.
 hal_client_domain(keyhandler_app, hal_lineage_touch)
