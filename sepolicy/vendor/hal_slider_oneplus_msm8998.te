@@ -19,3 +19,7 @@ allow hal_slider_oneplus_msm8998 kmsg_device:chr_file w_file_perms;
 allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
     create read getattr setattr lock bind connect getopt setopt shutdown map
 };
+
+# HAL -> client callback, oneway and primitive-only: { call } alone, not the
+# binder_call() macro.
+allow hal_slider_oneplus_msm8998 keyhandler_app:binder call;
