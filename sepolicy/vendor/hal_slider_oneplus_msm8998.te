@@ -32,3 +32,20 @@ allow hal_slider_oneplus_msm8998 kmsg_device:chr_file w_file_perms;
 allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
     create read getattr setattr lock bind connect getopt setopt shutdown map
 };
+
+# Callback path. The HAL reports the slider position to the client it stored,
+# keyhandler_app, through IAlertSliderCallback.onStateChanged, so the binder
+# direction is HAL -> client app. AOSP grants exactly this direction for its own
+# callback-capable HAL pairs (system/sepolicy/private/hal_audio.te carries both
+# binder_call(hal_audio_client, hal_audio_server) and the server -> client
+# counterpart for callbacks); the shared device/lineage hal_lineage_touch.te
+# only declares the client -> server line, which is why nothing covered this
+# once the HAL stopped dying at registration.
+#
+# Grant { call } alone rather than the whole binder_call() macro. The interface
+# is `oneway void onStateChanged(int)`, so the transaction carries a primitive,
+# transfers no binder object and has no reply, which means { transfer } and fd
+# use are never exercised; the avc denial names { call } alone, which says the
+# same thing from the other side. If the interface ever hands over a binder
+# object or an fd, add that one permission instead of widening to the macro.
+allow hal_slider_oneplus_msm8998 keyhandler_app:binder call;
