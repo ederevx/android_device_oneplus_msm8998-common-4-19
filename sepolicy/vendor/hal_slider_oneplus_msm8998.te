@@ -1,8 +1,5 @@
-# Always-alive authority for the alert slider. A vendor HAL is restarted by
-# init and never killed by the app killer, so it observes every movement even
-# while a framework-side consumer is dead, and serves the current position to
-# a restarted client. It uses the hal_lineage_touch HAL attribute so the
-# existing lineage touch client plumbing applies.
+# Outlives a dead framework consumer and can serve the current position to a
+# restarted client; reuses the lineage touch HAL plumbing.
 
 type hal_slider_oneplus_msm8998, domain;
 type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
@@ -10,25 +7,19 @@ type hal_slider_oneplus_msm8998_exec, exec_type, vendor_file_type, file_type;
 hal_server_domain(hal_slider_oneplus_msm8998, hal_lineage_touch)
 init_daemon_domain(hal_slider_oneplus_msm8998)
 
-# Registering the service with servicemanager. The kernel checks this exchange in
-# two steps: binder_transaction() asks for { call } before the transaction carries
-# the service's binder object, which binder_transfer_binder() then checks as
-# { transfer }. The device capture only ever showed { call }, because the
-# transaction is refused there and the object transfer is never reached; both are
-# needed, so use the pair rather than a bare call.
+# Not a bare call: the same transaction carries the service's binder object, so
+# binder_transfer_binder() also asks for { transfer }.
 binder_call(hal_slider_oneplus_msm8998, servicemanager)
 
-# Logging. The service routes every line through libbase's KernelLogger
-# (service.cpp sets android::base::KernelLogger) and its .rc declares no
-# `file /dev/kmsg w`, so libbase opens /dev/kmsg itself. inode_permission()
-# checks that open as { write } and only selinux_file_open() adds { open }, the
-# latter solely because the open_perms policy capability is enabled here, so
-# w_file_perms is required to cover both. This is a logging channel, not the
-# cause of the startup abort.
+# libbase opens /dev/kmsg itself, and with open_perms enabled that open also
+# asks for { open }, so w_file_perms covers both.
 allow hal_slider_oneplus_msm8998 kmsg_device:chr_file w_file_perms;
 
-# Kernel uevents for the tri-state slider. write/append are excluded because
-# app.te:573 neverallows them for appdomain and the class is read-only here.
+# write/append are neverallowed for appdomain; this class is read-only.
 allow hal_slider_oneplus_msm8998 self:netlink_kobject_uevent_socket {
     create read getattr setattr lock bind connect getopt setopt shutdown map
 };
+
+# HAL -> client callback, oneway and primitive-only: { call } alone, not the
+# binder_call() macro.
+allow hal_slider_oneplus_msm8998 keyhandler_app:binder call;
