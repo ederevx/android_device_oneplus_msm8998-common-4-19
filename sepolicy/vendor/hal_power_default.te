@@ -1,16 +1,11 @@
-# ADPF changes the scheduling of framework processes that sit at their own MLS
-# level, and the mlsconstrain on process setsched requires either equal levels or
-# a trusted subject (system/sepolicy/private/mls). Without this attribute the
-# allow rules below are overridden by that constrain and the denial is reported
-# against a domain that is already covered, which is what ADPF on platform apps
-# showed. Pixel's own power HAL policy sets the same attribute.
+# ADPF setsched on framework processes crosses MLS levels, so the trusted
+# subject attribute is required; Pixel's power HAL policy sets it too.
 typeattribute hal_power_default mlstrustedsubject;
 
-# To do powerhint on nodes defined in powerhint.json
+# Nodes defined in powerhint.json
 allow hal_power_default device_latency:chr_file rw_file_perms;
 
-# Powerhint writes utilization clamping values, which are cgroup files under
-# /dev/cpuctl; the stune node it used before needed the same rule
+# powerhint writes uclamp values into /dev/cpuctl cgroup files
 allow hal_power_default cgroup:dir search;
 allow hal_power_default cgroup:file w_file_perms;
 
@@ -21,21 +16,18 @@ allow hal_power_default proc_touchpanel:file rw_file_perms;
 # Connect to PPS
 unix_socket_connect(hal_power_default, pps, mm-pp-daemon)
 
-# (`proc_vendor_sched` itself is a platform type, declared in
-# system/sepolicy/public/file.te)
+# (`proc_vendor_sched` is a platform type, in system/sepolicy/public/file.te)
 allow hal_power_default proc_vendor_sched:dir search;
 allow hal_power_default proc_vendor_sched:file rw_file_perms;
 
-# An ADPF session changes the scheduling attributes of the threads it tracks, so
-# the HAL needs sys_nice and the right to set them on the framework processes it
-# follows. Without these the sessions are denied and hints are all that is left.
+# ADPF sessions need sys_nice and setsched on the threads they track.
 allow hal_power_default self:capability sys_nice;
 allow hal_power_default appdomain:process { getsched setsched };
 allow hal_power_default surfaceflinger:process setsched;
 allow hal_power_default hal_graphics_composer_default:process setsched;
 allow hal_power_default system_server:process setsched;
 
-# Session bookkeeping reads cpu statistics and back the cgroup values it set
+# Session bookkeeping reads cpu statistics
 allow hal_power_default proc_stat:file r_file_perms;
 allow hal_power_default cgroup:file r_file_perms;
 
