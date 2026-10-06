@@ -130,8 +130,36 @@
         <device name="SND_DEVICE_OUT_SPEAKER_AND_BT_SCO" backend="speaker-and-bt-sco" interface="QUAT_MI2S_RX-and-SLIMBUS_7_RX"/>
         <device name="SND_DEVICE_OUT_SPEAKER_AND_BT_SCO_WB" backend="speaker-and-bt-sco-wb" interface="QUAT_MI2S_RX-and-SLIMBUS_7_RX"/>
 
-        <device name="SND_DEVICE_OUT_SPEAKER" backend="quat_i2s" />
-        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="quat_i2s" />
+        <device name="SND_DEVICE_OUT_SPEAKER" backend="quat_i2s" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER" backend="quat_i2s" interface="QUAT_MI2S_RX"/>
+
+        <!-- Speaker-family parity: name the QUAT MI2S interface on every other
+             speaker-path device so its app-type-cfg backend index is BE 39 like
+             the ADM look-up, instead of the hardcoded SLIMBUS_0_RX (BE 2).
+             interface-only is parser-safe (backend is left to the stock
+             default, so no mixer route changes). -->
+        <device name="SND_DEVICE_OUT_SPEAKER_SAFE" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_REVERSE" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_PROTECTED_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_STEREO" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_HFP" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_PROTECTED" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2_PROTECTED" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_PROTECTED_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_2_PROTECTED_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_PROTECTED" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_VOICE_SPEAKER_STEREO_PROTECTED_VBAT" interface="QUAT_MI2S_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_SAFE_AND_HEADPHONES" interface="QUAT_MI2S_RX-and-SLIMBUS_6_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_SAFE_AND_LINE" interface="QUAT_MI2S_RX-and-SLIMBUS_6_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_BT_A2DP" interface="QUAT_MI2S_RX-and-SLIMBUS_7_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_SAFE_AND_BT_A2DP" interface="QUAT_MI2S_RX-and-SLIMBUS_7_RX"/>
+        <device name="SND_DEVICE_OUT_SPEAKER_AND_BT_SCO_SWB" interface="QUAT_MI2S_RX-and-SLIMBUS_7_RX"/>
     </backend_names>
 
     <microphone_characteristics>
