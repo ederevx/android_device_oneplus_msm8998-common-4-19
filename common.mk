@@ -153,7 +153,8 @@ PRODUCT_COPY_FILES += \
 
 # Dirac
 PRODUCT_PACKAGES += \
-    OnePlusDiracQem
+    OnePlusDiracQem \
+    OnePlusDiracQemSysconfig
 
 # Doze
 PRODUCT_PACKAGES += \
