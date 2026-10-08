@@ -121,6 +121,22 @@ PRODUCT_COPY_FILES += \
     frameworks/av/services/audiopolicy/config/bluetooth_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/bluetooth_audio_policy_configuration.xml \
     frameworks/av/services/audiopolicy/config/r_submix_audio_policy_configuration.xml:$(TARGET_COPY_OUT_VENDOR)/etc/r_submix_audio_policy_configuration.xml
 
+# Audio effects
+PRODUCT_PACKAGES += \
+    dirac_biquad_state \
+    libdirac_biquad
+
+# The effect is part of this product, so the Dirac settings app may offer its
+# software-fallback switch. This overlay is the one build-time signal: drop the
+# libdirac_biquad package above and the switch disappears with it, with no app
+# dependency on the effect module and no propagation for a consumer that is
+# not there. It is excluded from RRO enforcement below so it is merged at build
+# time rather than turned into a runtime overlay.
+PRODUCT_PACKAGE_OVERLAYS += \
+    device/oneplus/msm8998-common/overlay/dirac_biquad
+PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
+    device/oneplus/msm8998-common/overlay/dirac_biquad
+
 # Bluetooth
 PRODUCT_PACKAGES += \
     android.hardware.bluetooth.audio-impl \
