@@ -9,6 +9,9 @@
 # DASH
 /vendor/bin/dashd                                               u:object_r:dashd_exec:s0
 
+# Dirac biquad state service (system-side)
+/system/bin/dirac_biquad_state                                    u:object_r:dirac_biquad_state_exec:s0
+
 # Devices
 /dev/dash                                                       u:object_r:dash_device:s0
 
