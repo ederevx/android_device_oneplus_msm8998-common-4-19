@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+      This overlay exists only when the product ships the dirac_biquad effect
+      (see the PRODUCT_PACKAGE_OVERLAYS include next to libdirac_biquad in
+      common.mk). It turns on the settings switch that extends Dirac to the
+      outputs the HAL/DSP topology cannot reach. A build without the effect
+      never includes this overlay, so the app default (false) stands and the
+      switch is absent.
+
+      PRODUCT_PACKAGE_OVERLAYS maps by the package's source path, so the
+      overlay mirrors hardware/oneplus/dirac_qem below.
+    -->
+    <bool name="config_dirac_biquad_fallback_available">true</bool>
+</resources>
