@@ -425,4 +425,13 @@
         <item>0:2:15</item> <!-- ID0:Fingerprint:Strong -->
     </string-array>
 
+    <!-- Auto-select the default voice/data/SMS subscription when two SIMs are
+         present. AOSP leaves this false, in which case
+         MultiSimSettingController.updateDefaults() only posts the "choose a
+         preferred SIM" notification and never calls updateUserPreferences(),
+         so Settings.Global.multi_sim_data_call stays -1, no DDS is set and
+         neither stack attaches. With it true the framework picks the first
+         primary subscription itself. -->
+    <bool name="config_voice_data_sms_auto_fallback">true</bool>
+
 </resources>
