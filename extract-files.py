@@ -60,6 +60,13 @@ blob_fixups: blob_fixups_user_type = {
         .replace_needed('libstdc++.so', 'libstdc++_vendor.so'),
     'vendor/lib64/libwvhidl.so': blob_fixup()
         .add_needed('libcrypto_shim.so'),
+    'vendor/lib64/libril-qc-hal-qmi.so': blob_fixup()
+        .binary_regex_replace(b'android\\.hardware\\.radio\\.config@1\\.0\\.so',
+                              b'android.hardware.radio.c_shim@1.0.so')
+        .binary_regex_replace(b'android\\.hardware\\.radio\\.config@1\\.1\\.so',
+                              b'android.hardware.radio.c_shim@1.1.so')
+        .binary_regex_replace(b'android\\.hardware\\.radio\\.config@1\\.2\\.so',
+                              b'android.hardware.radio.c_shim@1.2.so'),
     (
         'vendor/lib/libOGLManager.so',
         'vendor/lib64/libOGLManager.so',
