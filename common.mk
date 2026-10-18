@@ -153,15 +153,13 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     disable_configstore
 
-# Display
+# Display - sm8250 generation, the newer-userspace experiment
 PRODUCT_PACKAGES += \
-    android.hardware.graphics.composer@2.1-service \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
-    gralloc.msm8998 \
-    hwcomposer.qcom \
     libdisplayconfig \
     vendor.qti.hardware.display.allocator-service \
+    vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.memtrack-service
 
 PRODUCT_COPY_FILES += \
@@ -275,11 +273,7 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set,lineage_health,charging_control_charging_path,/sys/class/power_supply/battery/charging_enabled)
 
-# LiveDisplay
-PRODUCT_PACKAGES += \
-    vendor.lineage.livedisplay-service.oneplus_msm8998
-
-$(call soong_config_set_bool,livedisplay_sdm,enable_dm,false)
+# LiveDisplay is fbdev-only here and is dropped with the fb0 nodes.
 
 # Media
 PRODUCT_COPY_FILES += \
