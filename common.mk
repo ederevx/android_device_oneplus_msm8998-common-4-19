@@ -153,14 +153,25 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     disable_configstore
 
-# Display - sm8250 generation, the newer-userspace experiment
+# Display - newer generation userspace, opt-in experiment only.
+# The shipping port is driven by the sdm660 display stack, so this block stays
+# behind a flag and a normal build keeps that stack untouched.
+TARGET_USES_NEWER_DISPLAY ?= false
+
+ifeq ($(TARGET_USES_NEWER_DISPLAY),true)
 PRODUCT_PACKAGES += \
     android.hardware.graphics.mapper@3.0-impl-qti-display \
     android.hardware.graphics.mapper@4.0-impl-qti-display \
     libdisplayconfig.qti \
+    libdrmutils \
+    libsdedrm \
     vendor.qti.hardware.display.allocator-service \
     vendor.qti.hardware.display.composer-service \
     vendor.qti.hardware.memtrack-service
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/rootdir/etc/init.display.sde.rc:$(TARGET_COPY_OUT_VENDOR)/etc/init/init.display.sde.rc
+endif
 
 PRODUCT_COPY_FILES += \
     $(LOCAL_PATH)/configs/FOSSConfig.xml:$(TARGET_COPY_OUT_VENDOR)/etc/FOSSConfig.xml

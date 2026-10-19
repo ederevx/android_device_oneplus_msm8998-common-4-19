@@ -1,0 +1,12 @@
+# Newer-generation composer for the SDE display experiment.
+#
+# The fbdev port starts the fbdev-generation composer service from
+# init.qcom.rc. When this file is installed, start the newer composer first so
+# the framework's lazy HAL lookup binds to it, and retire the older service as
+# soon as init brings it up so only one composer owns the display.
+
+on late-fs
+    start vendor.qti.hardware.display.composer
+
+on property:init.svc.vendor.hwcomposer-2-1=running
+    stop vendor.hwcomposer-2-1
