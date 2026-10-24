@@ -39,7 +39,7 @@ BOARD_KERNEL_BASE := 0x00000000
 BOARD_KERNEL_PAGESIZE := 4096
 BOARD_KERNEL_IMAGE_NAME := Image.gz-dtb
 TARGET_KERNEL_SOURCE := kernel/oneplus/msm8998
-TARGET_KERNEL_CONFIG := vendor/msm8998_oneplus-perf_defconfig
+TARGET_KERNEL_CONFIG := vendor/msm8998-perf_defconfig vendor/msm8998-oneplus.config
 TARGET_KERNEL_VERSION := 4.19
 
 # QCOM hardware
