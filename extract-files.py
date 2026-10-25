@@ -43,8 +43,6 @@ lib_fixups: lib_fixups_user_type = {
 }
 
 blob_fixups: blob_fixups_user_type = {
-    'product/etc/permissions/vendor-qti-hardware-sensorscalibrate.xml': blob_fixup()
-        .binary_regex_replace(b'/system/framework/', b'/system/product/framework/'),
     (
         'system_ext/lib64/lib-imsvideocodec.so',
         'system_ext/lib64/lib-imscamera.so',
@@ -77,10 +75,7 @@ blob_fixups: blob_fixups_user_type = {
         .clear_symbol_version('AHardwareBuffer_lock')
         .clear_symbol_version('AHardwareBuffer_release')
         .clear_symbol_version('AHardwareBuffer_unlock'),
-    (
-        'vendor/lib/libmmcamera_faceproc.so',
-        'vendor/lib64/libmmcamera_faceproc.so',
-    ): blob_fixup()
+    'vendor/lib/libmmcamera_faceproc.so': blob_fixup()
         .clear_symbol_version('__aeabi_memcpy')
         .clear_symbol_version('__aeabi_memset')
         .clear_symbol_version('__gnu_Unwind_Find_exidx'),
