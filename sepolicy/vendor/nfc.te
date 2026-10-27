@@ -1,0 +1,2 @@
+# Allow the framework NFC service to traverse its vendor data directory.
+allow nfc nfc_vendor_data_file:dir search;
