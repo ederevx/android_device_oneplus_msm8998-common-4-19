@@ -38,8 +38,7 @@ on init
     write /sys/module/qpnp_rtc/parameters/poweron_alarm 1
 
     # Disable UFS powersaving
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 0
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 0
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 0
     write /sys/module/lpm_levels/parameters/sleep_disabled Y
 
     # QSEE rpmb listener needs symlink for bootdevice
@@ -104,31 +103,29 @@ on init
     write /proc/sys/vm/page-cluster 0
 
     # Enable bus-dcvs
-    write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/soc:qcom,cpubw/polling_interval 50
-    write /sys/class/devfreq/soc:qcom,cpubw/min_freq 1525
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/mbps_zones "3143 5859 11863 13763"
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/sample_ms 4
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 34
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hist_memory 20
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/hyst_length 10
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_ceil_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_io_percent 34
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/low_power_delay 20
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/guard_band_mbps 0
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/up_scale 250
-    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/idle_mbps 1600
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/governor "bw_hwmon"
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/polling_interval 50
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/min_freq 1525
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/mbps_zones "3143 5859 11863 13763"
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/sample_ms 4
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/io_percent 34
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/decay_rate 100
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/bw_step 50
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hist_memory 20
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/hyst_length 10
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/down_thres 80
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/guard_band_mbps 0
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/up_scale 250
+    write /sys/class/devfreq/soc:qcom,cpu-cpu-ddr-bw/bw_hwmon/idle_mbps 1600
 
     # Configure memory latencies
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/polling_interval 10
-    write /sys/class/devfreq/soc:qcom,memlat-cpu0/mem_latency/ratio_ceil 400
+    write /sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/polling_interval 10
+    write /sys/class/devfreq/soc:qcom,cpu0-cpu-ddr-lat/mem_latency/ratio_ceil 400
 
-    write /sys/class/devfreq/soc:qcom,memlat-cpu4/governor "mem_latency"
-    write /sys/class/devfreq/soc:qcom,memlat-cpu4/polling_interval 10
-    write /sys/class/devfreq/soc:qcom,memlat-cpu4/mem_latency/ratio_ceil 400
-
-    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-lat/governor "mem_latency"
+    write /sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-lat/polling_interval 10
+    write /sys/class/devfreq/soc:qcom,cpu4-cpu-ddr-lat/mem_latency/ratio_ceil 400
 
     # Setup all the sub-system as related
     write /sys/bus/msm_subsys/devices/subsys0/restart_level RELATED
@@ -297,8 +294,8 @@ on boot
     chown wifi wifi /sys/class/net/bond0/bonding/queue_id
 
     # Fingerprint detect
-    chmod 0660 /sys/devices/soc/soc:fingerprint_detect/sensor_version
-    chown system system /sys/devices/soc/soc:fingerprint_detect/sensor_version
+    chmod 0660 /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
+    chown system system /sys/devices/platform/soc/soc:fingerprint_detect/sensor_version
 
     # DASH charger
     chmod 0666 /dev/dash
@@ -317,8 +314,7 @@ on charger
     setprop sys.usb.configfs 1
 
     # Enable UFS powersaving
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled N
 
     # disable thermal core control
@@ -347,8 +343,7 @@ on property:sys.boot_completed=1
     write /dev/stune/schedtune.boost 0
 
     # Enable UFS powersaving
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkscale_enable 1
-    write /sys/devices/soc/${ro.boot.bootdevice}/clkgate_enable 1
+    write /sys/devices/platform/soc/${ro.boot.bootdevice}/clkgate_enable 1
     write /sys/module/lpm_levels/parameters/sleep_disabled N
 
     # Setup final cpuset
