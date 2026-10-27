@@ -18,10 +18,16 @@ PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := true
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
     $(LOCAL_PATH)/overlay-lineage
 
 PRODUCT_ENFORCE_RRO_TARGETS += *
+
+PRODUCT_PACKAGES += \
+    FrameworksResCommon \
+    SettingsProviderResCommon \
+    SettingsResCommon \
+    SystemUIResCommon \
+    TelephonyResCommon
 
 # Partitions
 PRODUCT_PACKAGES += \
@@ -143,7 +149,8 @@ PRODUCT_COPY_FILES += \
 
 # Doze
 PRODUCT_PACKAGES += \
-    OnePlusDoze
+    OnePlusDoze \
+    OnePlusDozeResCommon
 
 # DRM
 PRODUCT_PACKAGES += \
