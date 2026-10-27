@@ -1,0 +1,4 @@
+# qipcrtr create is required at boot on user builds; sepolicy-legacy-um
+# conditions this grant on userdebug_or_eng, but the newer sepolicy_vndr
+# tree carries it unconditionally.
+allow hal_bluetooth_qti self:{ socket qipcrtr_socket } create_socket_perms_no_ioctl;
