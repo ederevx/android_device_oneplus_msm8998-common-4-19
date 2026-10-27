@@ -114,7 +114,7 @@ ro.vendor.extension_library=libqti-perfd-client.so
 ro.vendor.qti.va_aosp.support=1
 
 # RCS
-persist.rcs.supported=1
+persist.rcs.supported=0
 
 # RIL
 persist.vendor.radio.add_power_save=1
