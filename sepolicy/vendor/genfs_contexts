@@ -115,5 +115,9 @@ genfscon sysfs /devices/virtual/misc/msm_qcelp/wakeup                     u:obje
 genfscon sysfs /devices/virtual/misc/msm_wma/wakeup                       u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/virtual/misc/msm_wmapro/wakeup                    u:object_r:sysfs_wakeup:s0
 
+# USB
+genfscon sysfs /devices/platform/soc/a800000.ssusb/usb_data_enabled                                                                u:object_r:sysfs_usb_data_enabled:s0
+genfscon sysfs /devices/platform/soc/800f000.qcom,spmi/spmi-0/spmi0-02/800f000.qcom,spmi:qcom,pmi8998@2:qcom,usb-pdphy@1700/typec  u:object_r:sysfs_typec:s0
+
 # WLAN
 genfscon sysfs /devices/platform/soc/18800000.qcom,icnss/net  u:object_r:sysfs_net:s0
