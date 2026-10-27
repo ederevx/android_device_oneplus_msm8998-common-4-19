@@ -10,7 +10,7 @@ vendor                                                       /vendor            
 vendor                                                       /vendor                   ext4    ro                                                                                                   wait,logical,first_stage_mount
 odm                                                          /odm                      erofs   ro                                                                                                   wait,logical,first_stage_mount
 odm                                                          /odm                      ext4    ro                                                                                                   wait,logical,first_stage_mount
-/dev/block/bootdevice/by-name/logdump                        /metadata                 ext4    nosuid,nodev,noatime,discard                                                                         wait,check,formattable,first_stage_mount
+/dev/block/by-name/logdump                                   /metadata                 ext4    nosuid,nodev,noatime,discard                                                                         wait,check,formattable,first_stage_mount
 /dev/block/bootdevice/by-name/boot                           /boot                     emmc    defaults                                                                                             recoveryonly
 /dev/block/bootdevice/by-name/recovery                       /recovery                 emmc    defaults                                                                                             recoveryonly
 
