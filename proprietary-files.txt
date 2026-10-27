@@ -529,6 +529,18 @@ vendor/firmware/a540_zap.b02
 vendor/firmware/a540_zap.elf
 vendor/firmware/a540_zap.mdt
 
+# Graphics - HDR
+vendor/lib64/libhdr_tm.so|a1b9bbad12217e6b79951774801aa54be6460fd6
+
+# Graphics - SDM
+vendor/lib/libsdm-disp-vndapis.so|501f1b94c95f885e1e2bfab4d5f6804456473d79
+vendor/lib64/libqseed3.so|a858c83fb38ef7acd21ea0a23f36ef22ba8c06ef
+vendor/lib64/libsdm-color.so|69cea5fdff6c3ef05a17390b9031d9e0054bc2ad
+vendor/lib64/libsdm-diag.so|2ba98c20d05e34501a4423f55bec4da3f27711ad
+vendor/lib64/libsdm-disp-vndapis.so|80170ba42ef766a8217500e49c4943be91cf0749
+vendor/lib64/libsdmextension.so|2d7469450bfaadb304a8080e384f72601442d078
+vendor/lib64/libtinyxml2_1.so|ff32deb110acb02cb5def5f3404f9064c1276483
+
 
 # IPA
 vendor/firmware/ipa_fws.b00
