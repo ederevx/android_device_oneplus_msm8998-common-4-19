@@ -266,6 +266,8 @@ on boot
     chown system system /sys/class/qcom-battery/restrict_cur
     chmod 0660 /sys/class/qcom-battery/restrict_chg
     chmod 0660 /sys/class/qcom-battery/restrict_cur
+    # The thermal zones are exposed directly; no symlink setup is required.
+    setprop vendor.thermal.link_ready 1
 
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
