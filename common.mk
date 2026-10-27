@@ -81,7 +81,6 @@ PRODUCT_CHARACTERISTICS := nosdcard
 
 # ANT+
 PRODUCT_PACKAGES += \
-    AntHalService-Soong \
     com.dsi.ant@1.0.vendor
 
 # Audio
@@ -127,10 +126,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     android.hardware.camera.provider@2.4-impl:32 \
     android.hardware.camera.provider@2.4-service
-
-# Configstore
-PRODUCT_PACKAGES += \
-    disable_configstore
 
 # Display
 PRODUCT_PACKAGES += \
