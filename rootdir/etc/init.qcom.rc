@@ -261,6 +261,12 @@ on early-boot
     wait_for_prop vendor.qcom.devup 1
 
 on boot
+    # QTI USB HAL uses these class attributes for limitPowerTransfer.
+    chown system system /sys/class/qcom-battery/restrict_chg
+    chown system system /sys/class/qcom-battery/restrict_cur
+    chmod 0660 /sys/class/qcom-battery/restrict_chg
+    chmod 0660 /sys/class/qcom-battery/restrict_cur
+
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/type
     chown bluetooth net_bt /sys/class/rfkill/rfkill0/state
     chown system system /sys/module/msm_core/parameters/polling_interval
