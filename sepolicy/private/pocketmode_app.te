@@ -1,4 +1,4 @@
-type pocketmode_app, domain;
+type pocketmode_app, domain, coredomain;
 
 app_domain(pocketmode_app)
 
