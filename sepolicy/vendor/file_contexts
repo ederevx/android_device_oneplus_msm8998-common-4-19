@@ -11,6 +11,7 @@
 
 # Devices
 /dev/dash                                                       u:object_r:dash_device:s0
+/dev/ion                                                        u:object_r:ion_device:s0
 
 # Fingerprint
 /data/system/users/0/fpdata(/.*)?                               u:object_r:fingerprintd_data_file:s0
