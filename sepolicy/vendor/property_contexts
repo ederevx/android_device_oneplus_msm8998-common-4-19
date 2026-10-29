@@ -28,6 +28,3 @@ persist.sys.assert.panic               u:object_r:radio_control_prop:s0
 persist.sys.oem.region                 u:object_r:radio_control_prop:s0
 vendor.oem.device.imeicache0           u:object_r:vendor_radio_prop:s0
 vendor.oem.device.imeicache1           u:object_r:vendor_radio_prop:s0
-
-# Thermal
-sys.thermal.                           u:object_r:thermal_engine_prop:s0
