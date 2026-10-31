@@ -1,0 +1,43 @@
+{
+  "Profiles": [
+    {
+      "Name": "SCHED_QOS_SENSITIVE_STANDARD",
+      "Actions": [
+        {
+          "Name": "WriteFile",
+          "Params": {
+            "FilePath": "/proc/vendor_sched/sched_qos/sched_qos_sensitive_standard",
+            "Value": "<pid>",
+            "LogFailures": "false"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SCHED_QOS_SENSITIVE_EXTREME",
+      "Actions": [
+        {
+          "Name": "WriteFile",
+          "Params": {
+            "FilePath": "/proc/vendor_sched/sched_qos/sched_qos_sensitive_extreme",
+            "Value": "<pid>",
+            "LogFailures": "false"
+          }
+        }
+      ]
+    },
+    {
+      "Name": "SCHED_QOS_NONE",
+      "Actions": [
+        {
+          "Name": "WriteFile",
+          "Params": {
+            "FilePath": "/proc/vendor_sched/sched_qos/sched_qos_none",
+            "Value": "<pid>",
+            "LogFailures": "false"
+          }
+        }
+      ]
+    }
+  ]
+}
