@@ -1,1 +1,5 @@
 type sysfs_proximity, fs_type, sysfs_type, mlstrustedobject;
+
+# Declared in the exported public policy so the vendor policy, which owns the
+# vendor_audio_data_file allows, can name it.
+type dirac_biquad_state, domain;
