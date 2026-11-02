@@ -1,0 +1,25 @@
+# Dirac biquad state service: the QEM settings app calls this system-side
+# daemon over binder, and the daemon is the only writer of the config file the
+# host biquad effect reads.
+
+typeattribute dirac_biquad_state coredomain;
+
+# The daemon is a system component writing under /data/vendor for the vendor
+# effect HAL to read; this is the sanctioned exemption for that cross-partition
+# file channel, since hwbinder FD passing is not an option for a path read by
+# the effect at stream time. The allows themselves live in the vendor policy,
+# which owns vendor_audio_data_file.
+typeattribute dirac_biquad_state data_between_core_and_vendor_violators;
+
+type dirac_biquad_state_exec, exec_type, system_file_type, file_type;
+type dirac_biquad_state_service, service_manager_type;
+
+init_daemon_domain(dirac_biquad_state)
+
+binder_use(dirac_biquad_state)
+
+# Register "dirac_biquad_state" with the system servicemanager and let the
+# platform-signed settings app find and call it.
+add_service(dirac_biquad_state, dirac_biquad_state_service)
+allow platform_app dirac_biquad_state_service:service_manager find;
+binder_call(platform_app, dirac_biquad_state)
