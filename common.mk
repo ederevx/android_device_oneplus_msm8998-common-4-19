@@ -217,8 +217,8 @@ PRODUCT_COPY_FILES += \
 
 # Health
 PRODUCT_PACKAGES += \
-    android.hardware.health-service.example \
-    android.hardware.health-service.example_recovery
+    android.hardware.health-service.oneplus-msm8998 \
+    android.hardware.health-service.oneplus-msm8998_recovery
 
 # HIDL
 PRODUCT_PACKAGES += \
