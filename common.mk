@@ -393,6 +393,13 @@ PRODUCT_PACKAGES += \
     android.hardware.sensors@1.0-impl:64 \
     android.hardware.sensors@1.0-service
 
+# Thermal
+PRODUCT_PACKAGES += \
+    android.hardware.thermal-service.pixel
+
+PRODUCT_COPY_FILES += \
+    $(LOCAL_PATH)/configs/thermal_info_config.json:$(TARGET_COPY_OUT_VENDOR)/etc/thermal_info_config.json
+
 # Shipping API level (for CTS backward compatibility)
 PRODUCT_SHIPPING_API_LEVEL := 25
 
@@ -401,7 +408,9 @@ PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
     hardware/google/interfaces \
     hardware/google/pixel \
+    hardware/google/pixel/pixelstats \
     hardware/google/pixel/power-libperfmgr \
+    hardware/google/pixel/thermal \
     hardware/oneplus \
     hardware/qcom-caf/common/libqti-perfd-client
 
