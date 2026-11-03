@@ -241,6 +241,9 @@ PRODUCT_PACKAGES += \
 
 $(call soong_config_set,libinit,vendor_init_lib,//$(LOCAL_PATH):libinit_oneplus_msm8998)
 
+PRODUCT_PACKAGES_DEBUG += \
+    init.qcom.edl-debug.rc
+
 # IFAA (Fingerprint support for Alipay)
 PRODUCT_PACKAGES += \
     org.ifaa.android.manager
