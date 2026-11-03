@@ -1,0 +1,49 @@
+//
+// SPDX-FileCopyrightText: 2026 The LineageOS Project
+// SPDX-License-Identifier: Apache-2.0
+//
+
+// AOSP's example AIDL health implementation hard-codes
+// ChargerCallback::ChargerEnableSuspend() to false, which is only correct for
+// devices that do not set ro.charger.enable_suspend. msm8998 does set it, so
+// charger mode needs its own small implementation; see
+// hardware/interfaces/health/aidl/README.md, "Enable suspend".
+
+cc_defaults {
+    name: "android.hardware.health-service.oneplus-msm8998-defaults",
+    relative_install_path: "hw",
+    vintf_fragments: ["android.hardware.health-service.oneplus-msm8998.xml"],
+
+    defaults: [
+        "libhealth_aidl_impl_user",
+    ],
+
+    static_libs: [
+        "libhealth_aidl_impl",
+    ],
+
+    srcs: [
+        "service.cpp",
+    ],
+
+    cflags: [
+        "-Wall",
+        "-Werror",
+    ],
+}
+
+cc_binary {
+    name: "android.hardware.health-service.oneplus-msm8998",
+    vendor: true,
+    defaults: ["android.hardware.health-service.oneplus-msm8998-defaults"],
+    init_rc: ["android.hardware.health-service.oneplus-msm8998.rc"],
+    overrides: ["charger"],
+}
+
+cc_binary {
+    name: "android.hardware.health-service.oneplus-msm8998_recovery",
+    recovery: true,
+    defaults: ["android.hardware.health-service.oneplus-msm8998-defaults"],
+    init_rc: ["android.hardware.health-service.oneplus-msm8998_recovery.rc"],
+    overrides: ["charger.recovery"],
+}
