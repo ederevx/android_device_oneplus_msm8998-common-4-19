@@ -27,7 +27,9 @@ fs_mgr.overlayfs.prefer_cache_backing_storage=true
 ro.frp.pst=/dev/block/bootdevice/by-name/config
 
 # Graphics
+debug.hwui.use_hint_manager=true
 debug.renderengine.backend=skiaglthreaded
+debug.sf.enable_adpf_cpu_hint=1
 debug.sf.enable_hwc_vds=1
 debug.sf.hw=1
 dev.pm.dyn_samplingrate=1
