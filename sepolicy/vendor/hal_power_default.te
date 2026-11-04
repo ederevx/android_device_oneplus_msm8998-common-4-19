@@ -1,3 +1,6 @@
+# To set uclamp on app threads, which carry their own MLS categories
+typeattribute hal_power_default mlstrustedsubject;
+
 # To do powerhint on nodes defined in powerhint.json
 allow hal_power_default device_latency:chr_file rw_file_perms;
 
@@ -7,3 +10,13 @@ allow hal_power_default proc_touchpanel:file rw_file_perms;
 
 # Connect to PPS
 unix_socket_connect(hal_power_default, pps, mm-pp-daemon)
+
+# To set uclamp on the threads of ADPF hint sessions
+allow hal_power_default self:capability sys_nice;
+allow hal_power_default appdomain:process setsched;
+allow hal_power_default surfaceflinger:process setsched;
+allow hal_power_default system_server:process setsched;
+
+# To write the vendor_sched QoS, rampup and tgid type nodes
+allow hal_power_default proc_vendor_sched:dir search;
+allow hal_power_default proc_vendor_sched:file rw_file_perms;
