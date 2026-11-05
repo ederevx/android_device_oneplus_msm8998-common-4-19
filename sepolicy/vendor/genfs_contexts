@@ -80,6 +80,11 @@ genfscon sysfs /devices/platform/soc/soc:smp2p-slpi/wakeup             u:object_
 genfscon sysfs /devices/platform/soc/4080000.qcom,mss/wakeup           u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/soc:qcom,ipa_fws@1e08000/wakeup   u:object_r:sysfs_wakeup:s0
 
+# Camera CCI wakeup sources
+genfscon sysfs /devices/platform/soc/ca0c000.qcom,cci/ca0c000.qcom,cci:qcom,camera@0/video4linux/video4/wakeup  u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/ca0c000.qcom,cci/ca0c000.qcom,cci:qcom,camera@1/video4linux/video6/wakeup  u:object_r:sysfs_wakeup:s0
+genfscon sysfs /devices/platform/soc/ca0c000.qcom,cci/ca0c000.qcom,cci:qcom,camera@2/video4linux/video5/wakeup  u:object_r:sysfs_wakeup:s0
+
 # Peripheral wakeup sources
 genfscon sysfs /devices/virtual/diag/diag/wakeup                      u:object_r:sysfs_wakeup:s0
 genfscon sysfs /devices/platform/soc/c17a000.i2c/i2c-6/6-0028/wakeup  u:object_r:sysfs_wakeup:s0
